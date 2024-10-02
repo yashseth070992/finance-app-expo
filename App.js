@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
 import Login from './screens/Login'; // Import the updated Login component
+import Signup from "./screens/SignUp";
 import Dashboard from './screens/dashboard/Dashboard'; // Import Dashboard
 
 const Stack = createNativeStackNavigator();
@@ -16,7 +17,8 @@ export default function App() {
       <Stack.Navigator initialRouteName="Login">
         {/* Pass Login component directly */}
         <Stack.Screen name="Login" children={() => <Login setIsLoggedIn={setIsLoggedIn} />} />
-        <Stack.Screen name="Dashboard" component={Dashboard} />
+        <Stack.Screen name="Signup" children={() => <Signup setIsLoggedIn={setIsLoggedIn} />} />
+       <Stack.Screen name="Dashboard" component={Dashboard} />
       </Stack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>

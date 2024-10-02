@@ -82,7 +82,7 @@ const Login = ({ setIsLoggedIn }) => {
                 <Button title="Sign in" onPress={handleLogin} color="#1976d2" />
                 <Text style={styles.signupText}>
                     Don't have an account?{' '}
-                    <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+                    <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
                         <Text style={styles.signupLink}>Sign up</Text>
                     </TouchableOpacity>
                 </Text>
