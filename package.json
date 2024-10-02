@@ -10,6 +10,7 @@
     "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "@expo/metro-runtime": "~3.2.3",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-native-community/slider": "^4.5.3",

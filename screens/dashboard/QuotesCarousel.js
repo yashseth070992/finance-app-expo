@@ -45,7 +45,10 @@ const QuotesCarousel = () => {
         data={quotes}
         renderItem={({ item }) => (
           <View
-            style={[styles.quoteCard, { backgroundColor: item.backgroundColor }]}
+            style={[
+              styles.quoteCard,
+              { backgroundColor: item.backgroundColor },
+            ]}
           >
             <Text style={[styles.quoteText, { color: colors.text }]}>
               “{item.text}”

@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
-import CustomCard from './CustomCard'; // Import your CustomCard component
-import { useNavigation } from '@react-navigation/native'; // Import navigation hook
+import { View, Text, StyleSheet } from 'react-native';
+import CustomCardsContainer from './CustomCardsContainer'; // Import the new CustomCardsContainer
 import { useTheme } from '@react-navigation/native';
 
 const dashboardCardData = [
@@ -27,7 +26,6 @@ const dashboardCardData = [
 ];
 
 const FinancialToolsSection = () => {
-  const navigation = useNavigation(); // Get navigation object
   const { colors } = useTheme(); // Get colors from the current theme
 
   return (
@@ -35,19 +33,8 @@ const FinancialToolsSection = () => {
       <Text style={[styles.heading, { color: colors.text }]}>
         Explore Our Financial Calculators
       </Text>
-      <FlatList
-        data={dashboardCardData}
-        renderItem={({ item }) => (
-          <CustomCard
-            title={item.title}
-            description={item.description}
-            buttonAction={() => navigation.navigate(item.screen)} // Pass navigation to CustomCard
-            backgroundColor={item.backgroundColor}
-          />
-        )}
-        keyExtractor={(item) => item.title}
-        numColumns={2} // Adjust number of columns
-      />
+      {/* Use CustomCardsContainer to render the cards */}
+      <CustomCardsContainer data={dashboardCardData} />
     </View>
   );
 };

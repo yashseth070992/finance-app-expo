@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
-import CustomCard from './CustomCard'; // Import your CustomCard component
-import Ionicons from 'react-native-vector-icons/Ionicons'; // Import Ionicons
+import { View, Text, StyleSheet } from 'react-native';
+import CustomCardsContainer from './CustomCardsContainer'; // Import CustomCardsContainer
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '@react-navigation/native'; // Import useTheme
 
@@ -11,28 +10,28 @@ const cardData = [
     description:
       'Gain insights and compare various investment options to make informed decisions.',
     screen: 'AssetExplore',
-    icon: <Ionicons name="pie-chart" size={24} color="#FFF" />, // Correct Ionicon usage
+    icon: 'pie-chart',
   },
   {
     title: 'Manage Your Money',
     description:
       'Take control of your finances by tracking income, expenses, and savings.',
     screen: 'ManageMoney',
-    icon: <Ionicons name="trending-up" size={24} color="#FFF" />,
+    icon: 'trending-up',
   },
   {
     title: 'Set Goals',
     description:
       'Set and achieve your financial goals with our advanced goal-setting tools.',
     screen: 'SetGoals',
-    icon: <Ionicons name="flag" size={24} color="#FFF" />,
+    icon: 'flag',
   },
   {
     title: 'Manage Your Debt',
     description:
       'Stay on top of your debt and keep track of payments with our debt manager tool.',
     screen: 'DebtManager',
-    icon: <Ionicons name="attach-money" size={24} color="#FFF" />,
+    icon: 'attach-money',
   },
 ];
 
@@ -40,25 +39,18 @@ const ManageExploreSection = () => {
   const navigation = useNavigation(); // Navigation hook
   const { colors } = useTheme(); // Get colors from the current theme
 
+  const cardDataWithColors = cardData.map((item) => ({
+    ...item,
+    backgroundColor: colors.card, // Use theme card color
+  }));
+
   return (
     <View style={styles.container}>
       <Text style={[styles.heading, { color: colors.text }]}>
         Explore and Manage Your Finances
       </Text>
-      <FlatList
-        data={cardData}
-        renderItem={({ item }) => (
-          <CustomCard
-            title={item.title}
-            description={item.description}
-            buttonAction={() => navigation.navigate(item.screen)} // Pass action
-            buttonIcon={item.icon} // Pass icon
-            backgroundColor={colors.card} // Use theme card color
-          />
-        )}
-        keyExtractor={(item) => item.title} // Ensure title is unique
-        numColumns={2} // Display two cards per row
-      />
+      <CustomCardsContainer data={cardDataWithColors} />{' '}
+      {/* Use CustomCardsContainer */}
     </View>
   );
 };

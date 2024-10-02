@@ -1,10 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
-import CustomCard from './CustomCard';
+import { View, Text, StyleSheet } from 'react-native';
+import { useTheme } from '@react-navigation/native'; // Import useTheme
+import CustomCardsContainer from './CustomCardsContainer'; // Import CustomCardsContainer
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { useTheme } from '@react-navigation/native';
 
-// Data for financial rules cards
 const financeRulesData = [
   {
     title: 'The Rule of 72',
@@ -32,33 +31,22 @@ const financeRulesData = [
 const FinanceRulesSection = () => {
   const { colors } = useTheme(); // Get colors from the current theme
 
+  const financeRulesDataWithColors = financeRulesData.map((item) => ({
+    ...item,
+    titleTextColor: colors.text,
+    descriptionTextColor: colors.secondaryText,
+    icon: <Icon name={item.icon} size={50} color={colors.text} />, // Use theme color
+  }));
+
   return (
     <View style={styles.container}>
       {/* Section Heading */}
       <Text style={[styles.heading, { color: colors.text }]}>
         Best Rules of Finance
       </Text>
-
       {/* Cards Layout */}
-      <FlatList
-        data={financeRulesData}
-        keyExtractor={(item, index) => index.toString()}
-        numColumns={2} // Change this to fit your design (2 or 3 columns)
-        renderItem={({ item }) => (
-          <View style={styles.cardContainer}>
-            <CustomCard
-              title={item.title}
-              description={item.description}
-              buttonIcon={
-                <Icon name={item.icon} size={50} color={colors.text} />
-              }
-              backgroundColor={item.backgroundColor}
-              titleTextColor={colors.secondaryText} // Use theme colors
-              descriptionTextColor={colors.secondaryText}
-            />
-          </View>
-        )}
-      />
+      <CustomCardsContainer data={financeRulesDataWithColors} />{' '}
+      {/* Use CustomCardsContainer */}
     </View>
   );
 };
@@ -73,10 +61,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontSize: 24,
     fontWeight: 'bold',
-  },
-  cardContainer: {
-    flex: 1,
-    padding: 10,
   },
 });
 

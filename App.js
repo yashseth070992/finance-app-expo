@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '@babel/polyfill'; // Add this line at the top
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';

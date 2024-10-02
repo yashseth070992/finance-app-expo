@@ -1,8 +1,7 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
-import CustomCard from './CustomCard'; // Import your CustomCard component
-import Ionicons from 'react-native-vector-icons/Ionicons'; // Import Ionicons
+import { View, Text, StyleSheet } from 'react-native';
 import { useTheme } from '@react-navigation/native'; // Import useTheme
+import CustomCardsContainer from './CustomCardsContainer'; // Import the CustomCardsContainer
 
 const StaticContentSection = () => {
   const { colors } = useTheme(); // Get colors from the current theme
@@ -11,52 +10,36 @@ const StaticContentSection = () => {
       title: 'Investment Strategies',
       description:
         'Explore various investment strategies to diversify your portfolio and maximize returns.',
-      icon: <Ionicons name="bar-chart" size={24} color={colors.text} />, // Use theme color
+      icon: 'bar-chart',
       backgroundColor: '#E8F6F3',
-      titleTextColor: colors.text,
-      descriptionTextColor: colors.secondaryText,
     },
     {
       title: 'Market Trends',
       description:
         'Stay updated on the latest market trends and make data-driven financial decisions.',
-      icon: <Ionicons name="trending-up" size={24} color={colors.text} />, // Use theme color
+      icon: 'trending-up',
       backgroundColor: '#EAF2F8',
-      titleTextColor: colors.text,
-      descriptionTextColor: colors.secondaryText,
     },
     {
       title: 'Financial Health',
       description:
         'Track your financial health and get personalized tips to improve your financial well-being.',
-      icon: <Ionicons name="cash" size={24} color={colors.text} />, // Use theme color
+      icon: 'cash',
       backgroundColor: '#F5EEF8',
-      titleTextColor: colors.text,
-      descriptionTextColor: colors.secondaryText,
     },
-  ];
+  ].map((item) => ({
+    ...item,
+    titleTextColor: colors.text,
+    descriptionTextColor: colors.secondaryText,
+  }));
 
   return (
     <View style={styles.container}>
       <Text style={[styles.heading, { color: colors.text }]}>
         Explore Financial Insights
       </Text>
-      <FlatList
-        data={contentData}
-        renderItem={({ item }) => (
-          <CustomCard
-            title={item.title}
-            description={item.description}
-            buttonIcon={item.icon}
-            backgroundColor={item.backgroundColor}
-            titleTextColor={item.titleTextColor}
-            descriptionTextColor={item.descriptionTextColor}
-            buttonAction={() => console.log(`Navigate to ${item.title}`)} // Placeholder for action
-          />
-        )}
-        keyExtractor={(item) => item.title}
-        numColumns={3}
-      />
+      <CustomCardsContainer data={contentData} />{' '}
+      {/* Use CustomCardsContainer */}
     </View>
   );
 };
