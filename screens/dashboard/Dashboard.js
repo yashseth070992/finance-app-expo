@@ -8,6 +8,7 @@ import StaticContentSection from './StaticContentSection';
 import FinancialOverview from './FinancialOverview';
 import FinanceRulesSection from './FinanceRulesSection';
 import ManageExploreSection from './ManageExploreSection';
+import FooterSection from "../../components/FooterSection";
 
 const Dashboard = ({ setHeaderTitle }) => {
   const navigation = useNavigation();
