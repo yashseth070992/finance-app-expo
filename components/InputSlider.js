@@ -2,7 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { Slider } from '@react-native-community/slider';
 
-const InputSlider = ({ label, value, onValueChange, min = 1, max, step, suffix }) => {
+const InputSlider = ({
+  label,
+  value,
+  onValueChange,
+  min = 1,
+  max,
+  step,
+  suffix,
+}) => {
   const [inputValue, setInputValue] = useState(value.toString());
 
   useEffect(() => {

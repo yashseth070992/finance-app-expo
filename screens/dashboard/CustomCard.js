@@ -22,7 +22,11 @@ const CustomCard = ({
       color: titleTextColor || '#FFF',
     })
   ) : (
-    <Ionicons name="arrow-forward" size={iconSize} color={titleTextColor || '#FFF'} />
+    <Ionicons
+      name="arrow-forward"
+      size={iconSize}
+      color={titleTextColor || '#FFF'}
+    />
   );
 
   return (
@@ -54,10 +58,13 @@ const CustomCard = ({
 
       {/* Arrow Button Section */}
       <TouchableOpacity
-        style={styles.iconButton}
-        onPress={buttonAction || (() => navigation.navigate('/'))}
+        onPress={buttonAction || (() => alert('No action assigned'))} // Fallback to an alert
       >
-        <Ionicons name="arrow-forward" size={iconSize} color={titleTextColor || '#FFF'} />
+        <Ionicons
+          name="arrow-forward"
+          size={iconSize}
+          color={titleTextColor || '#FFF'}
+        />
       </TouchableOpacity>
     </View>
   );

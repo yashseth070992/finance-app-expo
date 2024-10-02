@@ -34,11 +34,19 @@ const FinancialOverview = () => {
       <FlatList
         data={financialData}
         renderItem={({ item }) => (
-          <Card style={[styles.card, { backgroundColor: item.backgroundColor }]}>
+          <Card
+            style={[styles.card, { backgroundColor: item.backgroundColor }]}
+          >
             <Card.Content>
-              <Text style={[styles.title, { color: item.textColor }]}>{item.title}</Text>
-              <Text style={[styles.value, { color: item.textColor }]}>{item.value}</Text>
-              <Text style={[styles.description, { color: item.textColor }]}>{item.description}</Text>
+              <Text style={[styles.title, { color: item.textColor }]}>
+                {item.title}
+              </Text>
+              <Text style={[styles.value, { color: item.textColor }]}>
+                {item.value}
+              </Text>
+              <Text style={[styles.description, { color: item.textColor }]}>
+                {item.description}
+              </Text>
             </Card.Content>
           </Card>
         )}

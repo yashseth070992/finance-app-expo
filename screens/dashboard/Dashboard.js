@@ -8,7 +8,7 @@ import StaticContentSection from './StaticContentSection';
 import FinancialOverview from './FinancialOverview';
 import FinanceRulesSection from './FinanceRulesSection';
 import ManageExploreSection from './ManageExploreSection';
-import FooterSection from "../../components/FooterSection";
+import FooterSection from '../../components/FooterSection';
 
 const Dashboard = ({ setHeaderTitle }) => {
   const navigation = useNavigation();
@@ -22,12 +22,12 @@ const Dashboard = ({ setHeaderTitle }) => {
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.pageContent}>
         <HeroSection />
-         <FinancialToolsSection />
+        <FinancialToolsSection />
         <QuotesCarousel />
         <ManageExploreSection />
         <StaticContentSection />
         <FinanceRulesSection />
-        <FinancialOverview /> 
+        <FinancialOverview />
       </View>
       <FooterSection />
     </ScrollView>

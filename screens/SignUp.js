@@ -1,5 +1,14 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput,CheckBox, Button, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  CheckBox,
+  Button,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const SignUp = () => {
@@ -11,7 +20,8 @@ const SignUp = () => {
   const navigation = useNavigation();
 
   // API URL of your Elastic Beanstalk signup endpoint
-  const API_URL = 'https://qki8l27mxb.execute-api.ap-south-1.amazonaws.com/signup';
+  const API_URL =
+    'https://qki8l27mxb.execute-api.ap-south-1.amazonaws.com/signup';
 
   const handleSignUp = async () => {
     try {
@@ -49,9 +59,7 @@ const SignUp = () => {
     <View style={styles.container}>
       <Text style={styles.headerText}>Sign up</Text>
 
-      {error && (
-        <Text style={styles.errorText}>{error}</Text>
-      )}
+      {error && <Text style={styles.errorText}>{error}</Text>}
 
       {/* Full Name Input */}
       <TextInput
@@ -81,19 +89,14 @@ const SignUp = () => {
 
       {/* Checkbox */}
       <View style={styles.checkboxContainer}>
-        <CheckBox
-          value={acceptUpdates}
-          onValueChange={setAcceptUpdates}
-        />
-        <Text style={styles.checkboxLabel}>I want to receive updates via email.</Text>
+        <CheckBox value={acceptUpdates} onValueChange={setAcceptUpdates} />
+        <Text style={styles.checkboxLabel}>
+          I want to receive updates via email.
+        </Text>
       </View>
 
       {/* Sign Up Button */}
-      <Button
-        title="Sign up"
-        onPress={handleSignUp}
-        color="#1976d2"
-      />
+      <Button title="Sign up" onPress={handleSignUp} color="#1976d2" />
 
       {/* Login Redirect */}
       <TouchableOpacity onPress={() => navigation.navigate('Login')}>

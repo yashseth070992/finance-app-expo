@@ -50,7 +50,9 @@ const FinanceRulesSection = () => {
             <CustomCard
               title={item.title}
               description={item.description}
-              buttonIcon={<Icon name={item.icon} size={50} color={item.titleTextColor} />}
+              buttonIcon={
+                <Icon name={item.icon} size={50} color={item.titleTextColor} />
+              }
               backgroundColor={item.backgroundColor}
               titleTextColor={item.titleTextColor}
               descriptionTextColor={item.descriptionTextColor}

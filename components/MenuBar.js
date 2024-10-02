@@ -9,7 +9,10 @@ const MenuBar = ({ onLogout, title }) => {
     <Appbar.Header>
       <Appbar.BackAction onPress={() => navigation.goBack()} />
       <Appbar.Content title={title} />
-      <Appbar.Action icon="account" onPress={() => navigation.navigate('Profile')} />
+      <Appbar.Action
+        icon="account"
+        onPress={() => navigation.navigate('Profile')}
+      />
       <Appbar.Action icon="logout" onPress={onLogout} />
     </Appbar.Header>
   );

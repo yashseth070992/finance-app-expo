@@ -3,8 +3,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import Login from './screens/Login';
-import Signup from "./screens/SignUp";
+import Signup from './screens/SignUp';
 import Dashboard from './screens/dashboard/Dashboard';
+import FinancialJourney from './screens/journey/FinancialJourney';
+import AssetExplore from './screens/AssetExplore';
+import ManageMoney from './screens/ManageMoney';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,7 +27,17 @@ export default function App() {
         <Stack.Screen name="Dashboard">
           {() => <Dashboard setHeaderTitle={setHeaderTitle} />}
         </Stack.Screen>
+        <Stack.Screen name="FinancialJourney">
+          {() => <FinancialJourney setHeaderTitle={setHeaderTitle} />}
+        </Stack.Screen>
+        <Stack.Screen name="ManageMoney">
+          {() => <ManageMoney setHeaderTitle={setHeaderTitle} />}
+        </Stack.Screen>
+        <Stack.Screen name="AssetExplore">
+          {() => <AssetExplore setHeaderTitle={setHeaderTitle} />}
+        </Stack.Screen>
       </Stack.Navigator>
+
       <StatusBar style="auto" />
     </NavigationContainer>
   );

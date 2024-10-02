@@ -1,7 +1,16 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  ImageBackground,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // Import useNavigation
 
 const HeroSection = () => {
+  const navigation = useNavigation(); // Use the useNavigation hook
+
   return (
     <ImageBackground
       source={{ uri: 'your-gradient-background-url' }} // You can also create a gradient background with a library
@@ -16,14 +25,16 @@ const HeroSection = () => {
 
       {/* Supporting Text */}
       <Text style={styles.supportingText}>
-        Take control of your finances with personalized investment tools and insights. Learn the art of compounding and long-term growth to achieve your financial goals.
+        Take control of your finances with personalized investment tools and
+        insights. Learn the art of compounding and long-term growth to achieve
+        your financial goals.
       </Text>
 
       {/* Call to Action Buttons */}
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={styles.primaryButton}
-          onPress={() => navigation.navigate('BeginJourney')}
+          onPress={() => navigation.navigate('FinancialJourney')}
         >
           <Text style={styles.buttonText}>Get Started</Text>
         </TouchableOpacity>
@@ -37,7 +48,10 @@ const HeroSection = () => {
 
       {/* Additional Info or Key Points */}
       <Text style={styles.additionalInfo}>
-        Whether you're planning for retirement, saving for a big purchase, or just looking to grow your wealth, our suite of financial tools will help guide you on your journey. Understand the power of compounding, optimize your investments, and unlock your financial potential.
+        Whether you're planning for retirement, saving for a big purchase, or
+        just looking to grow your wealth, our suite of financial tools will help
+        guide you on your journey. Understand the power of compounding, optimize
+        your investments, and unlock your financial potential.
       </Text>
     </ImageBackground>
   );

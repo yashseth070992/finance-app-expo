@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Button,
-  FlatList,
-} from 'react-native';
+import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
 import PieChartComponent from './PieChartComponent';
 import LineChartComponent from './LineChartComponent';
 import { formatNumber } from '../helpers/formatNumber';
@@ -28,7 +22,9 @@ const CalculatorResult = ({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Interest calculation for {chartData.length} years</Text>
+      <Text style={styles.title}>
+        Interest calculation for {chartData.length} years
+      </Text>
 
       <View style={styles.valuesContainer}>
         <Text>Future investment value</Text>

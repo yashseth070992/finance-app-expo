@@ -46,9 +46,19 @@ const QuotesCarousel = () => {
         activeDotStyle={styles.activeDotStyle}
       >
         {quotes.map((quote, index) => (
-          <View key={index} style={[styles.quoteCard, { backgroundColor: quote.backgroundColor }]}>
-            <Text style={[styles.quoteText, { color: quote.textColor }]}>“{quote.text}”</Text>
-            <Text style={[styles.authorText, { color: quote.textColor }]}>– {quote.author}</Text>
+          <View
+            key={index}
+            style={[
+              styles.quoteCard,
+              { backgroundColor: quote.backgroundColor },
+            ]}
+          >
+            <Text style={[styles.quoteText, { color: quote.textColor }]}>
+              “{quote.text}”
+            </Text>
+            <Text style={[styles.authorText, { color: quote.textColor }]}>
+              – {quote.author}
+            </Text>
           </View>
         ))}
       </Swiper>

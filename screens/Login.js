@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity, CheckBox, StyleSheet, Alert, ScrollView } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  TouchableOpacity,
+  CheckBox,
+  StyleSheet,
+  Alert,
+  ScrollView,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 const Login = ({ setIsLoggedIn }) => {
@@ -10,7 +20,8 @@ const Login = ({ setIsLoggedIn }) => {
   const [rememberMe, setRememberMe] = useState(false);
   const navigation = useNavigation();
 
-  const API_URL = 'https://qki8l27mxb.execute-api.ap-south-1.amazonaws.com/login';
+  const API_URL =
+    'https://qki8l27mxb.execute-api.ap-south-1.amazonaws.com/login';
 
   const handleLogin = async () => {
     // setError(null); // Reset error on new attempt
@@ -27,9 +38,9 @@ const Login = ({ setIsLoggedIn }) => {
     //   });
 
     //   if (response.ok) {
-        // const data = await response.json();
-        setIsLoggedIn(true);
-        navigation.navigate('Dashboard');
+    // const data = await response.json();
+    setIsLoggedIn(true);
+    navigation.navigate('Dashboard');
     //   } else {
     //     const errorData = await response.json();
     //     setError(errorData.error || 'Login failed');
@@ -67,9 +78,7 @@ const Login = ({ setIsLoggedIn }) => {
             onPress={() => setShowPassword(!showPassword)}
             style={styles.iconButton}
           >
-            <Text style={styles.eyeIcon}>
-              {showPassword ? '👁️' : '👁️‍🗨️'}
-            </Text>
+            <Text style={styles.eyeIcon}>{showPassword ? '👁️' : '👁️‍🗨️'}</Text>
           </TouchableOpacity>
         </View>
         <View style={styles.checkboxContainer}>

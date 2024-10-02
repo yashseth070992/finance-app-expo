@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import CustomCard from './CustomCard'; // Import your CustomCard component
 
 const dashboardCardData = [
@@ -19,11 +25,12 @@ const dashboardCardData = [
     title: 'SWP Calculator',
     screen: 'SWPCalculator',
     backgroundColor: '#8e44ad',
-    description: 'Find out how much you can withdraw periodically from your investments.',
+    description:
+      'Find out how much you can withdraw periodically from your investments.',
   },
 ];
 
-const FinancialToolsSection = ( ) => {
+const FinancialToolsSection = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Explore Our Financial Calculators</Text>

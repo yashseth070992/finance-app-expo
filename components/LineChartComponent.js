@@ -1,6 +1,11 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { VictoryChart, VictoryLine, VictoryAxis, VictoryLabel } from 'victory-native';
+import {
+  VictoryChart,
+  VictoryLine,
+  VictoryAxis,
+  VictoryLabel,
+} from 'victory-native';
 
 const LineChartComponent = ({ data, chartTitle, xKey, yKeys }) => {
   return (

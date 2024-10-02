@@ -7,9 +7,7 @@ const FooterSection = () => {
       <Text style={styles.footerText}>
         © 2024 COMPOUNDIT. All rights reserved.
       </Text>
-      <Text style={styles.footerSubtitle}>
-        Crafted with care by Your Team
-      </Text>
+      <Text style={styles.footerSubtitle}>Crafted with care by Your Team</Text>
     </View>
   );
 };

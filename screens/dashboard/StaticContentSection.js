@@ -1,13 +1,14 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import CustomCard from './CustomCard'; // Import your CustomCard component
-import  Ionicons  from 'react-native-vector-icons/Ionicons'; // Import Ionicons
+import Ionicons from 'react-native-vector-icons/Ionicons'; // Import Ionicons
 
 const StaticContentSection = () => {
   const contentData = [
     {
       title: 'Investment Strategies',
-      description: 'Explore various investment strategies to diversify your portfolio and maximize returns.',
+      description:
+        'Explore various investment strategies to diversify your portfolio and maximize returns.',
       icon: <Ionicons name="bar-chart" size={24} />, // Use Ionicons for the icon
       backgroundColor: '#E8F6F3',
       titleTextColor: '#34495E',
@@ -15,7 +16,8 @@ const StaticContentSection = () => {
     },
     {
       title: 'Market Trends',
-      description: 'Stay updated on the latest market trends and make data-driven financial decisions.',
+      description:
+        'Stay updated on the latest market trends and make data-driven financial decisions.',
       icon: <Ionicons name="trending-up" size={24} />, // Use Ionicons for the icon
       backgroundColor: '#EAF2F8',
       titleTextColor: '#34495E',
@@ -23,7 +25,8 @@ const StaticContentSection = () => {
     },
     {
       title: 'Financial Health',
-      description: 'Track your financial health and get personalized tips to improve your financial well-being.',
+      description:
+        'Track your financial health and get personalized tips to improve your financial well-being.',
       icon: <Ionicons name="cash" size={24} />, // Use Ionicons for the icon
       backgroundColor: '#F5EEF8',
       titleTextColor: '#8E44AD',
