@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Slider } from '@react-native-community/slider';
+import  Slider  from '@react-native-community/slider';
 import { TextInput } from 'react-native-paper'; // Using react-native-paper for TextInput
 
 const CalculatorInput = ({ inputs }) => {

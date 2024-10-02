@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { View, Text, Button, ScrollView, StyleSheet } from 'react-native';
-import CalculatorInput from '../components/CalculatorInput';
-import CalculatorResult from '../components/CalculatorResult';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import CalculatorInput from '../../components/CalculatorInput';
+import CalculatorResult from '../../components/CalculatorResult';
 import {
   getCalculatorInputs,
   calculateResults,
-} from '../helpers/calculatorHelper';
-import { getResultValues } from '../helpers/resultValuesHelper';
+} from '../../helpers/calculatorHelper';
+import { getResultValues } from '../../helpers/resultValuesHelper';
 
 const Calculator = ({
   setHeaderTitle,

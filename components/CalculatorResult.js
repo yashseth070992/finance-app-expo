@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
 import PieChartComponent from './PieChartComponent';
-import LineChartComponent from './LineChartComponent';
+// import LineChartComponent from './LineChartComponent';
 import { formatNumber } from '../helpers/formatNumber';
 
 const CalculatorResult = ({

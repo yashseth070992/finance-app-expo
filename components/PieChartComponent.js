@@ -2,7 +2,9 @@ import React from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { PieChart } from 'react-native-chart-kit'; // Import PieChart from react-native-chart-kit
 
-const screenWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get('window').width; // Get screen width dynamically
+
+// Define chart config for styling
 const chartConfig = {
   backgroundGradientFrom: '#1E2923',
   backgroundGradientFromOpacity: 0,
@@ -13,9 +15,11 @@ const chartConfig = {
   barPercentage: 0.5,
   useShadowColorFromDataset: false, // optional
 };
-const COLORS = ['#4CAF50', '#FF9800'];
+
+const COLORS = ['#4CAF50', '#FF9800']; // Define colors for slices
 
 function PieChartComponent({ invested, returns }) {
+  // Prepare the pie chart data
   const data = [
     {
       name: 'Invested Amount',
@@ -33,8 +37,10 @@ function PieChartComponent({ invested, returns }) {
     },
   ];
 
+  // Filter out any data with zero values
   const filteredData = data.filter((item) => item.value > 0);
 
+  // If no valid data, show a fallback message
   if (filteredData.length === 0) {
     return (
       <View style={styles.noDataContainer}>
@@ -45,15 +51,22 @@ function PieChartComponent({ invested, returns }) {
 
   return (
     <View style={styles.container}>
+      {/* Render the PieChart */}
       <PieChart
-        data={filteredData}
-        width={screenWidth}
+        data={filteredData.map(item => ({
+          name: item.name,
+          population: item.value,
+          color: item.color,
+          legendFontColor: item.legendFontColor,
+          legendFontSize: item.legendFontSize,
+        }))}
+        width={screenWidth * 0.9} // Adjust width dynamically
         height={220}
         chartConfig={chartConfig}
-        accessor="value"
+        accessor="population" // This is the property holding the data values
         backgroundColor="transparent"
         paddingLeft="15"
-        absolute
+        absolute // Show values inside slices
       />
     </View>
   );

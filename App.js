@@ -10,7 +10,9 @@ import AssetExplore from './screens/AssetExplore';
 import ManageMoney from './screens/ManageMoney';
 import DebtManager from './screens/DebtManager';
 import SetGoals from './screens/SetGoals';
-
+import SIPCalculator from "./screens/calculators/SIPCalculator";
+import SWPCalculator from "./screens/calculators/SWPCalculator";
+import LumpsumCalculator from "./screens/calculators/LumpsumCalculator";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -44,15 +46,15 @@ export default function App() {
         <Stack.Screen name="SetGoals">
           {() => <SetGoals setHeaderTitle={setHeaderTitle} />}
         </Stack.Screen>
-        {/* <Stack.Screen name="SetGoals">
-          {() => <SetGoals setHeaderTitle={setHeaderTitle} />}
+        <Stack.Screen name="SIPCalculator">
+          {() => <SIPCalculator setHeaderTitle={setHeaderTitle} />}
         </Stack.Screen>
-        <Stack.Screen name="SetGoals">
-          {() => <SetGoals setHeaderTitle={setHeaderTitle} />}
+        <Stack.Screen name="SWPCalculator">
+          {() => <SWPCalculator setHeaderTitle={setHeaderTitle} />}
         </Stack.Screen>
-        <Stack.Screen name="SetGoals">
-          {() => <SetGoals setHeaderTitle={setHeaderTitle} />}
-        </Stack.Screen> */}
+        <Stack.Screen name="LumpsumCalculator">
+          {() => <LumpsumCalculator setHeaderTitle={setHeaderTitle} />}
+        </Stack.Screen>
       </Stack.Navigator>
 
       <StatusBar style="auto" />

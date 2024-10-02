@@ -4,14 +4,14 @@ import {
   Text,
   FlatList,
   StyleSheet,
-  TouchableOpacity,
 } from 'react-native';
 import CustomCard from './CustomCard'; // Import your CustomCard component
+import { useNavigation } from '@react-navigation/native'; // Import navigation hook
 
 const dashboardCardData = [
   {
     title: 'Sip Calculator',
-    screen: 'SipCalculator',
+    screen: 'SIPCalculator',
     backgroundColor: '#3498db',
     description: 'Calculate the returns of your Systematic Investment Plan.',
   },
@@ -31,6 +31,8 @@ const dashboardCardData = [
 ];
 
 const FinancialToolsSection = () => {
+  const navigation = useNavigation(); // Get navigation object
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Explore Our Financial Calculators</Text>
@@ -40,12 +42,12 @@ const FinancialToolsSection = () => {
           <CustomCard
             title={item.title}
             description={item.description}
-            buttonAction={() => navigation.navigate(item.screen)}
+            buttonAction={() => navigation.navigate(item.screen)} // Pass navigation to CustomCard
             backgroundColor={item.backgroundColor}
           />
         )}
         keyExtractor={(item) => item.title}
-        numColumns={3}
+        numColumns={2} // Adjust number of columns
       />
     </View>
   );
