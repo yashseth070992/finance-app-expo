@@ -10,7 +10,7 @@ import {
   Alert,
   ScrollView,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useTheme } from '@react-navigation/native'; // Import useTheme to get the theme
 
 const Login = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
@@ -19,47 +19,39 @@ const Login = ({ setIsLoggedIn }) => {
   const [error, setError] = useState(null);
   const [rememberMe, setRememberMe] = useState(false);
   const navigation = useNavigation();
+  const { colors } = useTheme(); // Get colors from the current theme
 
   const API_URL =
     'https://qki8l27mxb.execute-api.ap-south-1.amazonaws.com/login';
 
   const handleLogin = async () => {
-    // setError(null); // Reset error on new attempt
-    // try {
-    //   const response = await fetch(API_URL, {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       username: email,
-    //       password: password,
-    //     }),
-    //   });
-
-    //   if (response.ok) {
-    // const data = await response.json();
     setIsLoggedIn(true);
     navigation.navigate('Dashboard');
-    //   } else {
-    //     const errorData = await response.json();
-    //     setError(errorData.error || 'Login failed');
-    //     Alert.alert('Error', errorData.error || 'Login failed');
-    //   }
-    // } catch (err) {
-    //   setError('Something went wrong, please try again.');
-    //   Alert.alert('Error', 'Something went wrong, please try again.');
-    // }
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      contentContainerStyle={[
+        styles.container,
+        { backgroundColor: colors.background },
+      ]}
+    >
       <View style={styles.loginSection}>
-        <Text style={styles.title}>Sign in</Text>
-        {error && <Text style={styles.errorText}>{error}</Text>}
+        <Text style={[styles.title, { color: colors.text }]}>Sign in</Text>
+        {error && (
+          <Text style={[styles.errorText, { color: 'red' }]}>{error}</Text>
+        )}
         <TextInput
-          style={styles.input}
+          style={[
+            styles.input,
+            {
+              borderColor: colors.borderColor,
+              backgroundColor: colors.inputBackground,
+              color: colors.text,
+            },
+          ]}
           placeholder="Email"
+          placeholderTextColor={colors.secondaryText}
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
@@ -67,8 +59,16 @@ const Login = ({ setIsLoggedIn }) => {
         />
         <View style={styles.passwordContainer}>
           <TextInput
-            style={styles.input}
+            style={[
+              styles.input,
+              {
+                borderColor: colors.borderColor,
+                backgroundColor: colors.inputBackground,
+                color: colors.text,
+              },
+            ]}
             placeholder="Password"
+            placeholderTextColor={colors.secondaryText}
             secureTextEntry={!showPassword}
             value={password}
             onChangeText={setPassword}
@@ -82,17 +82,27 @@ const Login = ({ setIsLoggedIn }) => {
           </TouchableOpacity>
         </View>
         <View style={styles.checkboxContainer}>
-          <CheckBox value={rememberMe} onValueChange={setRememberMe} />
-          <Text style={styles.checkboxLabel}>Remember me</Text>
+          <CheckBox
+            value={rememberMe}
+            onValueChange={setRememberMe}
+            tintColors={{ true: colors.primary, false: colors.secondaryText }}
+          />
+          <Text style={[styles.checkboxLabel, { color: colors.text }]}>
+            Remember me
+          </Text>
         </View>
         <TouchableOpacity onPress={() => Alert.alert('Forgot Password')}>
-          <Text style={styles.forgotPassword}>Forgot your password?</Text>
+          <Text style={[styles.forgotPassword, { color: colors.primary }]}>
+            Forgot your password?
+          </Text>
         </TouchableOpacity>
-        <Button title="Sign in" onPress={handleLogin} color="#1976d2" />
-        <Text style={styles.signupText}>
+        <Button title="Sign in" onPress={handleLogin} color={colors.primary} />
+        <Text style={[styles.signupText, { color: colors.text }]}>
           Don't have an account?{' '}
           <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
-            <Text style={styles.signupLink}>Sign up</Text>
+            <Text style={[styles.signupLink, { color: colors.primary }]}>
+              Sign up
+            </Text>
           </TouchableOpacity>
         </Text>
       </View>
@@ -116,7 +126,6 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
     borderRadius: 5,
     padding: 10,
     marginBottom: 15,
@@ -143,7 +152,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   forgotPassword: {
-    color: '#1976d2',
     marginBottom: 20,
     textAlign: 'right',
   },
@@ -152,11 +160,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   signupLink: {
-    color: '#1976d2',
     fontWeight: 'bold',
   },
   errorText: {
-    color: 'red',
     textAlign: 'center',
     marginBottom: 10,
   },

@@ -8,8 +8,9 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
+  ScrollView,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useTheme } from '@react-navigation/native'; // Import useTheme to get the theme
 
 const SignUp = () => {
   const [name, setName] = useState('');
@@ -18,14 +19,13 @@ const SignUp = () => {
   const [acceptUpdates, setAcceptUpdates] = useState(false);
   const [error, setError] = useState(null); // State to hold error messages
   const navigation = useNavigation();
+  const { colors } = useTheme(); // Get the theme colors
 
-  // API URL of your Elastic Beanstalk signup endpoint
   const API_URL =
     'https://qki8l27mxb.execute-api.ap-south-1.amazonaws.com/signup';
 
   const handleSignUp = async () => {
     try {
-      // Make the API call to the signup endpoint
       const response = await fetch(API_URL, {
         method: 'POST',
         headers: {
@@ -40,9 +40,8 @@ const SignUp = () => {
       });
 
       if (response.ok) {
-        // On success, redirect to the login page
         Alert.alert('Success', 'You have signed up successfully!');
-        navigation.navigate('Login'); // Navigate to Login screen
+        navigation.navigate('Login');
       } else {
         const errorData = await response.json();
         setError(errorData.error || 'Sign-up failed');
@@ -56,63 +55,94 @@ const SignUp = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.headerText}>Sign up</Text>
+    <ScrollView
+      contentContainerStyle={[
+        styles.container,
+        { backgroundColor: colors.background },
+      ]}
+    >
+      <Text style={[styles.headerText, { color: colors.text }]}>Sign up</Text>
 
-      {error && <Text style={styles.errorText}>{error}</Text>}
+      {error && (
+        <Text style={[styles.errorText, { color: 'red' }]}>{error}</Text>
+      )}
 
-      {/* Full Name Input */}
       <TextInput
-        style={styles.input}
+        style={[
+          styles.input,
+          {
+            borderColor: colors.borderColor,
+            backgroundColor: colors.inputBackground,
+            color: colors.text,
+          },
+        ]}
         placeholder="Full name"
+        placeholderTextColor={colors.secondaryText}
         value={name}
-        onChangeText={(text) => setName(text)}
+        onChangeText={setName}
       />
 
-      {/* Email Input */}
       <TextInput
-        style={styles.input}
+        style={[
+          styles.input,
+          {
+            borderColor: colors.borderColor,
+            backgroundColor: colors.inputBackground,
+            color: colors.text,
+          },
+        ]}
         placeholder="Email"
+        placeholderTextColor={colors.secondaryText}
         value={email}
-        onChangeText={(text) => setEmail(text)}
+        onChangeText={setEmail}
         keyboardType="email-address"
       />
 
-      {/* Password Input */}
       <TextInput
-        style={styles.input}
+        style={[
+          styles.input,
+          {
+            borderColor: colors.borderColor,
+            backgroundColor: colors.inputBackground,
+            color: colors.text,
+          },
+        ]}
         placeholder="Password"
+        placeholderTextColor={colors.secondaryText}
         secureTextEntry
         value={password}
-        onChangeText={(text) => setPassword(text)}
+        onChangeText={setPassword}
       />
 
-      {/* Checkbox */}
       <View style={styles.checkboxContainer}>
-        <CheckBox value={acceptUpdates} onValueChange={setAcceptUpdates} />
-        <Text style={styles.checkboxLabel}>
+        <CheckBox
+          value={acceptUpdates}
+          onValueChange={setAcceptUpdates}
+          tintColors={{ true: colors.primary, false: colors.secondaryText }}
+        />
+        <Text style={[styles.checkboxLabel, { color: colors.text }]}>
           I want to receive updates via email.
         </Text>
       </View>
 
-      {/* Sign Up Button */}
-      <Button title="Sign up" onPress={handleSignUp} color="#1976d2" />
+      <Button title="Sign up" onPress={handleSignUp} color={colors.primary} />
 
-      {/* Login Redirect */}
       <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.loginText}>
-          Already have an account? <Text style={styles.loginLink}>Sign in</Text>
+        <Text style={[styles.loginText, { color: colors.text }]}>
+          Already have an account?{' '}
+          <Text style={[styles.loginLink, { color: colors.primary }]}>
+            Sign in
+          </Text>
         </Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    paddingHorizontal: 20,
+    flexGrow: 1,
+    padding: 20,
   },
   headerText: {
     fontSize: 24,
@@ -122,14 +152,12 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
     borderRadius: 5,
     padding: 10,
     marginBottom: 15,
     fontSize: 16,
   },
   errorText: {
-    color: 'red',
     textAlign: 'center',
     marginBottom: 10,
   },
@@ -148,7 +176,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   loginLink: {
-    color: '#1976d2',
     fontWeight: 'bold',
   },
 });

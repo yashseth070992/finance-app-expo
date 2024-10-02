@@ -1,14 +1,20 @@
 import React from 'react';
 import { Button, Text, StyleSheet, View } from 'react-native';
 import { IconButton } from 'react-native-paper'; // Using react-native-paper for IconButton
+import { useTheme } from '@react-navigation/native'; // Import useTheme
 
 const CardButton = ({ title, onClick, icon: Icon }) => {
+  const { colors } = useTheme(); // Get colors from the current theme
+
   return (
-    <Button style={styles.cardButton} onPress={onClick}>
-      <IconButton style={styles.iconButton}>
+    <Button
+      style={[styles.cardButton, { backgroundColor: colors.card }]}
+      onPress={onClick}
+    >
+      <IconButton style={styles.iconButton} color={colors.text}>
         <Icon size={24} />
       </IconButton>
-      <Text style={styles.cardTitle}>{title}</Text>
+      <Text style={[styles.cardTitle, { color: colors.text }]}>{title}</Text>
     </Button>
   );
 };
@@ -19,7 +25,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
     borderRadius: 8,
-    backgroundColor: '#fff',
     elevation: 3,
     marginBottom: 10,
   },

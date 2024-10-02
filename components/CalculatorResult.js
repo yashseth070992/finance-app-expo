@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Button, FlatList } from 'react-native';
 import PieChartComponent from './PieChartComponent';
 // import LineChartComponent from './LineChartComponent';
 import { formatNumber } from '../helpers/formatNumber';
+import { useTheme } from '@react-navigation/native'; // Import useTheme
 
 const CalculatorResult = ({
   invested = 0,
@@ -11,6 +12,7 @@ const CalculatorResult = ({
   calculatorType,
   chartData = [],
 }) => {
+  const { colors } = useTheme(); // Get colors from the current theme
   const [viewMode, setViewMode] = useState('chart');
 
   const initialInvestment = chartData.length > 0 ? chartData[0].initial : 0;
@@ -21,29 +23,47 @@ const CalculatorResult = ({
   const timeToDouble = rate > 0 ? 72 / rate : 0;
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>
+    <View style={[styles.container, { backgroundColor: colors.card }]}>
+      <Text style={[styles.title, { color: colors.text }]}>
         Interest calculation for {chartData.length} years
       </Text>
 
       <View style={styles.valuesContainer}>
-        <Text>Future investment value</Text>
-        <Text style={styles.value}>₹{formatNumber(totalAmount)}</Text>
+        <Text style={{ color: colors.text }}>Future investment value</Text>
+        <Text style={[styles.value, { color: colors.text }]}>
+          ₹{formatNumber(totalAmount)}
+        </Text>
 
-        <Text>Total interest earned</Text>
-        <Text style={styles.value}>₹{formatNumber(returns)}</Text>
+        <Text style={{ color: colors.text }}>Total interest earned</Text>
+        <Text style={[styles.value, { color: colors.text }]}>
+          ₹{formatNumber(returns)}
+        </Text>
 
-        <Text>Initial balance</Text>
-        <Text style={styles.value}>₹{formatNumber(initialInvestment)}</Text>
+        <Text style={{ color: colors.text }}>Initial balance</Text>
+        <Text style={[styles.value, { color: colors.text }]}>
+          ₹{formatNumber(initialInvestment)}
+        </Text>
 
-        <Text>Yearly rate → Compounded rate</Text>
-        <Text style={styles.value}>{rate}% → Compounded Rate</Text>
+        <Text style={{ color: colors.text }}>
+          Yearly rate → Compounded rate
+        </Text>
+        <Text style={[styles.value, { color: colors.text }]}>
+          {rate}% → Compounded Rate
+        </Text>
 
-        <Text>All-time rate of return (RoR)</Text>
-        <Text style={styles.value}>↑ {roi.toFixed(2)}%</Text>
+        <Text style={{ color: colors.text }}>
+          All-time rate of return (RoR)
+        </Text>
+        <Text style={[styles.value, { color: colors.text }]}>
+          ↑ {roi.toFixed(2)}%
+        </Text>
 
-        <Text>Time needed to double investment</Text>
-        <Text style={styles.value}>{timeToDouble.toFixed(2)} years</Text>
+        <Text style={{ color: colors.text }}>
+          Time needed to double investment
+        </Text>
+        <Text style={[styles.value, { color: colors.text }]}>
+          {timeToDouble.toFixed(2)} years
+        </Text>
       </View>
 
       <View style={styles.toggleContainer}>
@@ -64,10 +84,16 @@ const CalculatorResult = ({
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
             <View style={styles.row}>
-              <Text>{item.year}</Text>
-              <Text>₹{formatNumber(parseFloat(item.invested))}</Text>
-              <Text>₹{formatNumber(parseFloat(item.profit))}</Text>
-              <Text>₹{formatNumber(parseFloat(item.compounded))}</Text>
+              <Text style={{ color: colors.text }}>{item.year}</Text>
+              <Text style={{ color: colors.text }}>
+                ₹{formatNumber(parseFloat(item.invested))}
+              </Text>
+              <Text style={{ color: colors.text }}>
+                ₹{formatNumber(parseFloat(item.profit))}
+              </Text>
+              <Text style={{ color: colors.text }}>
+                ₹{formatNumber(parseFloat(item.compounded))}
+              </Text>
             </View>
           )}
         />
@@ -79,7 +105,6 @@ const CalculatorResult = ({
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    backgroundColor: '#fff',
     borderRadius: 8,
     marginVertical: 10,
   },

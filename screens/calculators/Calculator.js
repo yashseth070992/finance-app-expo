@@ -7,6 +7,7 @@ import {
   calculateResults,
 } from '../../helpers/calculatorHelper';
 import { getResultValues } from '../../helpers/resultValuesHelper';
+import { useTheme } from '@react-navigation/native'; // Import useTheme
 
 const Calculator = ({
   setHeaderTitle,
@@ -15,6 +16,7 @@ const Calculator = ({
   heading,
   subheading,
 }) => {
+  const { colors } = useTheme(); // Get colors from the current theme
   const [values, setValues] = useState({
     investment: 50000,
     rate: 8,
@@ -58,9 +60,16 @@ const Calculator = ({
   }[calculatorType];
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.heading}>{heading}</Text>
-      <Text style={styles.subheading}>{subheading}</Text>
+    <ScrollView
+      contentContainerStyle={[
+        styles.container,
+        { backgroundColor: colors.background },
+      ]}
+    >
+      <Text style={[styles.heading, { color: colors.text }]}>{heading}</Text>
+      <Text style={[styles.subheading, { color: colors.secondaryText }]}>
+        {subheading}
+      </Text>
 
       <View style={styles.inputContainer}>
         <CalculatorInput inputs={inputs} />
@@ -84,17 +93,14 @@ const Calculator = ({
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    backgroundColor: '#f4f8fc',
   },
   heading: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#2C3E50',
     marginBottom: 10,
   },
   subheading: {
     fontSize: 16,
-    color: '#7F8C8D',
     marginBottom: 20,
   },
   inputContainer: {

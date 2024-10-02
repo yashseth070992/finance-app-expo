@@ -1,16 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import {
-  VictoryChart,
-  VictoryLine,
-  VictoryAxis,
-  VictoryLabel,
-} from 'victory-native';
+import { VictoryChart, VictoryLine, VictoryAxis } from 'victory-native';
+import { useTheme } from '@react-navigation/native'; // Import useTheme
 
 const LineChartComponent = ({ data, chartTitle, xKey, yKeys }) => {
+  const { colors } = useTheme(); // Get colors from the current theme
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{chartTitle}</Text>
+      <Text style={[styles.title, { color: colors.text }]}>{chartTitle}</Text>
       <VictoryChart width={300} height={200}>
         <VictoryAxis dependentAxis />
         <VictoryAxis />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { Slider } from '@react-native-community/slider';
+import { useTheme } from '@react-navigation/native'; // Import useTheme
 
 const InputSlider = ({
   label,
@@ -11,6 +12,7 @@ const InputSlider = ({
   step,
   suffix,
 }) => {
+  const { colors } = useTheme(); // Get colors from the current theme
   const [inputValue, setInputValue] = useState(value.toString());
 
   useEffect(() => {
@@ -40,16 +42,16 @@ const InputSlider = ({
 
   return (
     <View style={styles.sliderContainer}>
-      <Text style={styles.label}>{label}</Text>
+      <Text style={[styles.label, { color: colors.text }]}>{label}</Text>
       <View style={styles.inputWrapper}>
         <TextInput
-          style={styles.input}
+          style={[styles.input, { borderColor: colors.borderColor }]}
           keyboardType="numeric"
           value={inputValue}
           onChangeText={handleInputChange}
           onBlur={handleBlur}
         />
-        <Text style={styles.suffix}>{suffix}</Text>
+        <Text style={[styles.suffix, { color: colors.text }]}>{suffix}</Text>
       </View>
       <Slider
         style={styles.slider}
@@ -61,6 +63,8 @@ const InputSlider = ({
           setInputValue(val.toString());
           onValueChange(parseFloat(val));
         }}
+        minimumTrackTintColor={colors.primary} // Customize color
+        maximumTrackTintColor="#D3D3D3" // Customize color
       />
     </View>
   );
@@ -81,7 +85,6 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     borderWidth: 1,
-    borderColor: '#ccc',
     padding: 10,
     borderRadius: 5,
     marginRight: 8,

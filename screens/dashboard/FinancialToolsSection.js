@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import CustomCard from './CustomCard'; // Import your CustomCard component
 import { useNavigation } from '@react-navigation/native'; // Import navigation hook
+import { useTheme } from '@react-navigation/native';
 
 const dashboardCardData = [
   {
@@ -27,10 +28,13 @@ const dashboardCardData = [
 
 const FinancialToolsSection = () => {
   const navigation = useNavigation(); // Get navigation object
+  const { colors } = useTheme(); // Get colors from the current theme
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Explore Our Financial Calculators</Text>
+      <Text style={[styles.heading, { color: colors.text }]}>
+        Explore Our Financial Calculators
+      </Text>
       <FlatList
         data={dashboardCardData}
         renderItem={({ item }) => (
