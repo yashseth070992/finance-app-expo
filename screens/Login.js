@@ -27,27 +27,35 @@ const Login = ({ setIsLoggedIn }) => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(API_URL, {
-        email,
-        password,
+      const response = await fetch(API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: email,
+          password: password,
+        }),
       });
-
-      // Check the response to determine if the login was successful
-      if (response.data.success) {
+      if (response.ok) {
         setIsLoggedIn(true); // Set logged in state
         navigation.navigate('Dashboard'); // Navigate to the Dashboard
       } else {
-        setError(response.data.message); // Set error message
+        const errorData = await response.json();
+        setError(errorData.error || 'Login failed');
       }
-    } catch (error) {
-      console.error(error);
-      setError('Login failed. Please try again.'); // Handle error
+    } catch (err) {
+      console.error('Error login:', err);
+      setError('Something went wrong, please try again.');
     }
   };
 
   return (
     <ScrollView
-      contentContainerStyle={[styles.container, { backgroundColor: colors.background }]}
+      contentContainerStyle={[
+        styles.container,
+        { backgroundColor: colors.background },
+      ]}
     >
       <View style={styles.loginSection}>
         <Text style={[styles.title, { color: colors.text }]}>Sign in</Text>
