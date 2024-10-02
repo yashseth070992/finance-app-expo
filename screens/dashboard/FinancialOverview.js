@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { Card } from 'react-native-paper'; // Use Card from react-native-paper
+import { useTheme } from '@react-navigation/native';
 
 const financialData = [
   {
@@ -8,28 +9,29 @@ const financialData = [
     value: '830',
     description: 'Rating: Excellent',
     backgroundColor: '#E8F5E9',
-    textColor: '#37474F',
   },
   {
     title: 'Debt Profile',
     value: '₹15,32,680',
     description: 'Total Debt',
     backgroundColor: '#FFF9C4',
-    textColor: '#F57F17',
   },
   {
     title: 'Investments',
     value: '₹25,00,000',
     description: 'Total Investments',
     backgroundColor: '#E3F2FD',
-    textColor: '#1976D2',
   },
 ];
 
 const FinancialOverview = () => {
+  const { colors } = useTheme(); // Get colors from the current theme
+
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Financial Overview</Text>
+      <Text style={[styles.heading, { color: colors.text }]}>
+        Financial Overview
+      </Text>
 
       <FlatList
         data={financialData}
@@ -38,13 +40,15 @@ const FinancialOverview = () => {
             style={[styles.card, { backgroundColor: item.backgroundColor }]}
           >
             <Card.Content>
-              <Text style={[styles.title, { color: item.textColor }]}>
+              <Text style={[styles.title, { color: colors.text }]}>
                 {item.title}
               </Text>
-              <Text style={[styles.value, { color: item.textColor }]}>
+              <Text style={[styles.value, { color: colors.text }]}>
                 {item.value}
               </Text>
-              <Text style={[styles.description, { color: item.textColor }]}>
+              <Text
+                style={[styles.description, { color: colors.secondaryText }]}
+              >
                 {item.description}
               </Text>
             </Card.Content>

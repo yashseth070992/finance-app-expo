@@ -3,6 +3,7 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import CustomCard from './CustomCard'; // Import your CustomCard component
 import Ionicons from 'react-native-vector-icons/Ionicons'; // Import Ionicons
 import { useNavigation } from '@react-navigation/native';
+import { useTheme } from '@react-navigation/native'; // Import useTheme
 
 const cardData = [
   {
@@ -37,10 +38,13 @@ const cardData = [
 
 const ManageExploreSection = () => {
   const navigation = useNavigation(); // Navigation hook
+  const { colors } = useTheme(); // Get colors from the current theme
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Explore and Manage Your Finances</Text>
+      <Text style={[styles.heading, { color: colors.text }]}>
+        Explore and Manage Your Finances
+      </Text>
       <FlatList
         data={cardData}
         renderItem={({ item }) => (
@@ -49,6 +53,7 @@ const ManageExploreSection = () => {
             description={item.description}
             buttonAction={() => navigation.navigate(item.screen)} // Pass action
             buttonIcon={item.icon} // Pass icon
+            backgroundColor={colors.card} // Use theme card color
           />
         )}
         keyExtractor={(item) => item.title} // Ensure title is unique

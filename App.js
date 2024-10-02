@@ -3,8 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { useColorScheme } from 'react-native'; // Import useColorScheme for theme detection
-import { LightTheme, DarkThemeConfig } from './theme'; // Import the theme from theme.js
+import { LightTheme, DarkThemeConfig } from './theme'; // Import the custom themes
 import Login from './screens/Login';
 import Signup from './screens/SignUp';
 import Dashboard from './screens/dashboard/Dashboard';
@@ -23,9 +22,6 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [headerTitle, setHeaderTitle] = useState('');
-  
-  // Get the user's color scheme preference
-  const colorScheme = useColorScheme(); // Automatically detects light/dark mode
 
   // Function to handle logout
   const handleLogout = () => {
@@ -39,7 +35,8 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <NavigationContainer theme={colorScheme === 'dark' ? DarkThemeConfig : LightTheme}>
+      {/* Set theme to DarkThemeConfig explicitly */}
+      <NavigationContainer theme={LightTheme}>
         {isLoggedIn ? (
           <Stack.Navigator initialRouteName="Dashboard">
             <Stack.Screen name="Dashboard" options={renderMenuBar(headerTitle)}>
@@ -102,7 +99,8 @@ export default function App() {
           </Stack.Navigator>
         )}
 
-        <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
+        {/* Set the status bar style to match the dark theme */}
+        <StatusBar style="light" />
       </NavigationContainer>
     </SafeAreaProvider>
   );

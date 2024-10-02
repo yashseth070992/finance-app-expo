@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Dimensions } from 'react-native';
 import { PieChart } from 'react-native-chart-kit'; // Import PieChart from react-native-chart-kit
+import { useTheme } from '@react-navigation/native'; // Import useTheme
 
 const screenWidth = Dimensions.get('window').width; // Get screen width dynamically
 
@@ -19,6 +20,8 @@ const chartConfig = {
 const COLORS = ['#4CAF50', '#FF9800']; // Define colors for slices
 
 function PieChartComponent({ invested, returns }) {
+  const { colors } = useTheme(); // Get colors from the current theme
+
   // Prepare the pie chart data
   const data = [
     {

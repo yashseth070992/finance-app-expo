@@ -7,9 +7,11 @@ import {
   ImageBackground,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native'; // Import useNavigation
+import { useTheme } from '@react-navigation/native'; // Import useTheme
 
 const HeroSection = () => {
   const navigation = useNavigation(); // Use the useNavigation hook
+  const { colors } = useTheme(); // Get colors from the current theme
 
   return (
     <ImageBackground
@@ -21,10 +23,12 @@ const HeroSection = () => {
       <View style={[styles.circle, styles.circle2]} />
 
       {/* Main Heading */}
-      <Text style={styles.heading}>Empower Your Financial Future</Text>
+      <Text style={[styles.heading, { color: colors.text }]}>
+        Empower Your Financial Future
+      </Text>
 
       {/* Supporting Text */}
-      <Text style={styles.supportingText}>
+      <Text style={[styles.supportingText, { color: colors.secondaryText }]}>
         Take control of your finances with personalized investment tools and
         insights. Learn the art of compounding and long-term growth to achieve
         your financial goals.
@@ -33,13 +37,13 @@ const HeroSection = () => {
       {/* Call to Action Buttons */}
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          style={styles.primaryButton}
+          style={[styles.primaryButton, { backgroundColor: colors.primary }]}
           onPress={() => navigation.navigate('FinancialJourney')}
         >
           <Text style={styles.buttonText}>Get Started</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={styles.secondaryButton}
+          style={[styles.secondaryButton, { borderColor: colors.accent }]}
           onPress={() => navigation.navigate('LearnMore')}
         >
           <Text style={styles.buttonText}>Learn More</Text>
@@ -47,7 +51,7 @@ const HeroSection = () => {
       </View>
 
       {/* Additional Info or Key Points */}
-      <Text style={styles.additionalInfo}>
+      <Text style={[styles.additionalInfo, { color: colors.secondaryText }]}>
         Whether you're planning for retirement, saving for a big purchase, or
         just looking to grow your wealth, our suite of financial tools will help
         guide you on your journey. Understand the power of compounding, optimize
@@ -88,7 +92,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#feca57',
   },
   heading: {
-    color: '#ffffff',
     fontWeight: '800',
     textTransform: 'uppercase',
     letterSpacing: 4,
@@ -96,7 +99,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   supportingText: {
-    color: '#e0e0e0',
     fontSize: 16,
     textAlign: 'center',
     marginVertical: 10,
@@ -107,14 +109,12 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   primaryButton: {
-    backgroundColor: '#ff6b6b',
     paddingVertical: 10,
     paddingHorizontal: 30,
     borderRadius: 25,
     marginRight: 10,
   },
   secondaryButton: {
-    borderColor: '#feca57',
     borderWidth: 1,
     paddingVertical: 10,
     paddingHorizontal: 30,
@@ -125,7 +125,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   additionalInfo: {
-    color: '#e0e0e0',
     fontSize: 14,
     textAlign: 'center',
     marginTop: 20,

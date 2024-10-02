@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons'; // Correct
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useTheme } from '@react-navigation/native';
 
 const CustomCard = ({
   title,
@@ -14,18 +14,19 @@ const CustomCard = ({
   iconSize = 50, // Default icon size
 }) => {
   const navigation = useNavigation();
+  const { colors } = useTheme(); // Get colors from the current theme
 
   // Clone the passed icon and apply the same styles
   const iconElement = buttonIcon ? (
     React.cloneElement(buttonIcon, {
       size: iconSize,
-      color: titleTextColor || '#FFF',
+      color: titleTextColor || colors.text, // Use theme text color
     })
   ) : (
     <Ionicons
       name="arrow-forward"
       size={iconSize}
-      color={titleTextColor || '#FFF'}
+      color={titleTextColor || colors.text} // Use theme text color
     />
   );
 
@@ -33,7 +34,9 @@ const CustomCard = ({
     <View
       style={[
         styles.cardContainer,
-        { backgroundColor: backgroundColor || '#A3C4F3' },
+        {
+          backgroundColor: backgroundColor || colors.card, // Use theme card color
+        },
       ]}
     >
       {/* Icon Section */}
@@ -42,7 +45,9 @@ const CustomCard = ({
       </TouchableOpacity>
 
       {/* Title */}
-      <Text style={[styles.titleText, { color: titleTextColor || '#FFF' }]}>
+      <Text
+        style={[styles.titleText, { color: titleTextColor || colors.text }]}
+      >
         {title}
       </Text>
 
@@ -50,7 +55,7 @@ const CustomCard = ({
       <Text
         style={[
           styles.descriptionText,
-          { color: descriptionTextColor || '#7F8C8D' },
+          { color: descriptionTextColor || colors.secondaryText }, // Use theme secondary text color
         ]}
       >
         {description}
@@ -63,7 +68,7 @@ const CustomCard = ({
         <Ionicons
           name="arrow-forward"
           size={iconSize}
-          color={titleTextColor || '#FFF'}
+          color={titleTextColor || colors.text} // Use theme text color
         />
       </TouchableOpacity>
     </View>

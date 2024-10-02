@@ -1,16 +1,23 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import financialJourneyData from './data/financialJourneyData'; // Adjust the path based on your project structure
+import { useTheme } from '@react-navigation/native'; // Import useTheme
 
 const FinancialJourneyContent = () => {
+  const { colors } = useTheme(); // Get colors from the current theme
+
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Key Questions to Ask Yourself</Text>
+    <View style={[styles.container, { backgroundColor: colors.background }]}>
+      <Text style={[styles.header, { color: colors.text }]}>
+        Key Questions to Ask Yourself
+      </Text>
       <ScrollView>
         {financialJourneyData.map((section, index) => (
           <View key={index} style={styles.card}>
-            <Text style={styles.cardTitle}>{section.title}</Text>
-            <Text style={styles.cardContent}>
+            <Text style={[styles.cardTitle, { color: colors.text }]}>
+              {section.title}
+            </Text>
+            <Text style={[styles.cardContent, { color: colors.secondaryText }]}>
               {section.content.map((item, idx) => (
                 <Text key={idx}>
                   - {item}
@@ -28,8 +35,6 @@ const FinancialJourneyContent = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    backgroundColor: '#f4f8fc',
-    color: '#2c3e50',
   },
   header: {
     fontWeight: 'bold',
