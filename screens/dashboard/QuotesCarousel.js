@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-const Swiper = require('react-native-swiper').default;
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import Carousel from 'react-native-reanimated-carousel';
+import { useTheme } from '@react-navigation/native'; // Import useTheme
 
 const quotes = [
   {
@@ -32,33 +33,29 @@ const quotes = [
 
 const QuotesCarousel = () => {
   const { colors } = useTheme(); // Get colors from the current theme
+  const windowWidth = Dimensions.get('window').width; // Get the width of the screen
 
   return (
     <View style={styles.container}>
-      <Swiper
-        autoplay
-        autoplayTimeout={10}
-        paginationStyle={styles.paginationStyle}
-        dotStyle={styles.dotStyle}
-        activeDotStyle={styles.activeDotStyle}
-      >
-        {quotes.map((quote, index) => (
+      <Carousel
+        loop
+        width={windowWidth}
+        height={200}
+        autoPlay={true}
+        data={quotes}
+        renderItem={({ item }) => (
           <View
-            key={index}
-            style={[
-              styles.quoteCard,
-              { backgroundColor: quote.backgroundColor },
-            ]}
+            style={[styles.quoteCard, { backgroundColor: item.backgroundColor }]}
           >
             <Text style={[styles.quoteText, { color: colors.text }]}>
-              “{quote.text}”
+              “{item.text}”
             </Text>
             <Text style={[styles.authorText, { color: colors.secondaryText }]}>
-              – {quote.author}
+              – {item.author}
             </Text>
           </View>
-        ))}
-      </Swiper>
+        )}
+      />
     </View>
   );
 };
@@ -84,22 +81,6 @@ const styles = StyleSheet.create({
   authorText: {
     marginTop: 10,
     fontSize: 16,
-  },
-  paginationStyle: {
-    bottom: 10,
-  },
-  dotStyle: {
-    backgroundColor: 'rgba(0,0,0,.2)',
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    marginHorizontal: 3,
-  },
-  activeDotStyle: {
-    backgroundColor: '#007AFF', // Active dot color
-    width: 10,
-    height: 10,
-    borderRadius: 5,
   },
 });
 
