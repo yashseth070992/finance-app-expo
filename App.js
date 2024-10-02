@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaProvider } from 'react-native-safe-area-context'; // Add SafeAreaProvider
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { useColorScheme } from 'react-native'; // Import useColorScheme for theme detection
+import { LightTheme, DarkThemeConfig } from './theme'; // Import the theme from theme.js
 import Login from './screens/Login';
 import Signup from './screens/SignUp';
 import Dashboard from './screens/dashboard/Dashboard';
@@ -14,17 +16,20 @@ import SetGoals from './screens/SetGoals';
 import SIPCalculator from './screens/calculators/SIPCalculator';
 import SWPCalculator from './screens/calculators/SWPCalculator';
 import LumpsumCalculator from './screens/calculators/LumpsumCalculator';
-import MenuBar from './components/MenuBar'; // Import MenuBar
+import MenuBar from './components/MenuBar';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track login status
-  const [headerTitle, setHeaderTitle] = useState(''); // State to manage header title
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [headerTitle, setHeaderTitle] = useState('');
+  
+  // Get the user's color scheme preference
+  const colorScheme = useColorScheme(); // Automatically detects light/dark mode
 
   // Function to handle logout
   const handleLogout = () => {
-    setIsLoggedIn(false); // Reset login status
+    setIsLoggedIn(false);
   };
 
   // Function to render MenuBar in stack screen options
@@ -34,9 +39,7 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      {' '}
-      {/* Wrap the app with SafeAreaProvider */}
-      <NavigationContainer>
+      <NavigationContainer theme={colorScheme === 'dark' ? DarkThemeConfig : LightTheme}>
         {isLoggedIn ? (
           <Stack.Navigator initialRouteName="Dashboard">
             <Stack.Screen name="Dashboard" options={renderMenuBar(headerTitle)}>
@@ -99,7 +102,7 @@ export default function App() {
           </Stack.Navigator>
         )}
 
-        <StatusBar style="auto" />
+        <StatusBar style={colorScheme === 'dark' ? 'light' : 'dark'} />
       </NavigationContainer>
     </SafeAreaProvider>
   );
