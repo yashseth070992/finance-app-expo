@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-} from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 import CustomCard from './CustomCard'; // Import your CustomCard component
 import { useNavigation } from '@react-navigation/native'; // Import navigation hook
 

@@ -53,7 +53,7 @@ function PieChartComponent({ invested, returns }) {
     <View style={styles.container}>
       {/* Render the PieChart */}
       <PieChart
-        data={filteredData.map(item => ({
+        data={filteredData.map((item) => ({
           name: item.name,
           population: item.value,
           color: item.color,

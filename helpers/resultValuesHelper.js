@@ -1,4 +1,8 @@
-import { generateSIPChartData, generateLumpsumChartData, generateSWPChartData } from './chartDataHelpers';
+import {
+  generateSIPChartData,
+  generateLumpsumChartData,
+  generateSWPChartData,
+} from './chartDataHelpers';
 
 export const getResultValues = (calculatorType, results) => {
   switch (calculatorType) {

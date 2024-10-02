@@ -11,9 +11,9 @@ import AssetExplore from './screens/AssetExplore';
 import ManageMoney from './screens/ManageMoney';
 import DebtManager from './screens/DebtManager';
 import SetGoals from './screens/SetGoals';
-import SIPCalculator from "./screens/calculators/SIPCalculator";
-import SWPCalculator from "./screens/calculators/SWPCalculator";
-import LumpsumCalculator from "./screens/calculators/LumpsumCalculator";
+import SIPCalculator from './screens/calculators/SIPCalculator';
+import SWPCalculator from './screens/calculators/SWPCalculator';
+import LumpsumCalculator from './screens/calculators/LumpsumCalculator';
 import MenuBar from './components/MenuBar'; // Import MenuBar
 
 const Stack = createNativeStackNavigator();
@@ -33,60 +33,56 @@ export default function App() {
   });
 
   return (
-    <SafeAreaProvider> {/* Wrap the app with SafeAreaProvider */}
+    <SafeAreaProvider>
+      {' '}
+      {/* Wrap the app with SafeAreaProvider */}
       <NavigationContainer>
         {isLoggedIn ? (
           <Stack.Navigator initialRouteName="Dashboard">
-            <Stack.Screen 
-              name="Dashboard" 
-              options={renderMenuBar(headerTitle)}
-            >
+            <Stack.Screen name="Dashboard" options={renderMenuBar(headerTitle)}>
               {() => <Dashboard setHeaderTitle={setHeaderTitle} />}
             </Stack.Screen>
-            <Stack.Screen 
-              name="FinancialJourney" 
+            <Stack.Screen
+              name="FinancialJourney"
               options={renderMenuBar(headerTitle)}
             >
               {() => <FinancialJourney setHeaderTitle={setHeaderTitle} />}
             </Stack.Screen>
-            <Stack.Screen 
-              name="ManageMoney" 
+            <Stack.Screen
+              name="ManageMoney"
               options={renderMenuBar(headerTitle)}
             >
               {() => <ManageMoney setHeaderTitle={setHeaderTitle} />}
             </Stack.Screen>
-            <Stack.Screen 
-              name="AssetExplore" 
+            <Stack.Screen
+              name="AssetExplore"
               options={renderMenuBar(headerTitle)}
             >
               {() => <AssetExplore setHeaderTitle={setHeaderTitle} />}
             </Stack.Screen>
-            <Stack.Screen 
-              name="DebtManager" 
+            <Stack.Screen
+              name="DebtManager"
               options={renderMenuBar(headerTitle)}
             >
               {() => <DebtManager setHeaderTitle={setHeaderTitle} />}
             </Stack.Screen>
-            <Stack.Screen 
-              name="SetGoals" 
-              options={renderMenuBar(headerTitle)}
-            >
+            <Stack.Screen name="SetGoals" options={renderMenuBar(headerTitle)}>
               {() => <SetGoals setHeaderTitle={setHeaderTitle} />}
             </Stack.Screen>
-            <Stack.Screen 
-              name="SIPCalculator" 
+            <Stack.Screen
+              name="SIPCalculator"
               options={renderMenuBar(headerTitle)}
             >
               {() => <SIPCalculator setHeaderTitle={setHeaderTitle} />}
             </Stack.Screen>
-            <Stack.Screen 
-              name="SWPCalculator" 
+            <Stack.Screen
+              name="SWPCalculator"
               options={renderMenuBar(headerTitle)}
             >
               {() => <SWPCalculator setHeaderTitle={setHeaderTitle} />}
             </Stack.Screen>
-            <Stack.Screen 
-              name="LumpsumCalculator" 
+            <Stack.Screen
+              name="LumpsumCalculator"
               options={renderMenuBar(headerTitle)}
             >
               {() => <LumpsumCalculator setHeaderTitle={setHeaderTitle} />}

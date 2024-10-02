@@ -43,7 +43,12 @@ export const generateLumpsumChartData = (investment, rate, time) => {
   return chartData;
 };
 
-export const generateSWPChartData = (initialBalance, rate, time, monthlyWithdrawal) => {
+export const generateSWPChartData = (
+  initialBalance,
+  rate,
+  time,
+  monthlyWithdrawal
+) => {
   const r = rate / 100 / 12; // Monthly interest rate
   const chartData = [];
   let remainingBalance = initialBalance;

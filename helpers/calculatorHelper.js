@@ -7,7 +7,8 @@ export const getCalculatorInputs = (type, values, setValues) => {
         {
           label: 'Principal Amount',
           value: investment,
-          setValue: (val) => setValues((prev) => ({ ...prev, investment: val })),
+          setValue: (val) =>
+            setValues((prev) => ({ ...prev, investment: val })),
           min: 1000,
           max: 1000000,
           step: 1000,
@@ -37,7 +38,8 @@ export const getCalculatorInputs = (type, values, setValues) => {
         {
           label: 'Monthly Investment',
           value: investment,
-          setValue: (val) => setValues((prev) => ({ ...prev, investment: val })),
+          setValue: (val) =>
+            setValues((prev) => ({ ...prev, investment: val })),
           min: 1000,
           max: 1000000,
           step: 1000,
@@ -67,7 +69,8 @@ export const getCalculatorInputs = (type, values, setValues) => {
         {
           label: 'Investment Amount',
           value: investment,
-          setValue: (val) => setValues((prev) => ({ ...prev, investment: val })),
+          setValue: (val) =>
+            setValues((prev) => ({ ...prev, investment: val })),
           min: 1000,
           max: 10000000,
           step: 1000,
@@ -85,7 +88,8 @@ export const getCalculatorInputs = (type, values, setValues) => {
         {
           label: 'Monthly Withdrawal Amount',
           value: withdrawal,
-          setValue: (val) => setValues((prev) => ({ ...prev, withdrawal: val })),
+          setValue: (val) =>
+            setValues((prev) => ({ ...prev, withdrawal: val })),
           min: 1000,
           max: 100000,
           step: 1000,
