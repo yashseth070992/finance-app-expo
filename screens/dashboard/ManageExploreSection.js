@@ -30,7 +30,7 @@ const cardData = [
     title: 'Manage Your Debt',
     description:
       'Stay on top of your debt and keep track of payments with our debt manager tool.',
-    screen: 'ManageDebt',
+    screen: 'DebtManager',
     icon: <Ionicons name="attach-money" size={24} color="#FFF" />,
   },
 ];

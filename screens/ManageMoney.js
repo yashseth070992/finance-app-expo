@@ -7,11 +7,11 @@ import {
   StyleSheet,
   ScrollView,
   FlatList,
-  Picker,
 } from 'react-native';
 import { PieChart } from 'react-native-chart-kit'; // Import PieChart from react-native-chart-kit
 import Ionicons from 'react-native-vector-icons/Ionicons'; // Import Ionicons
-import { Paper } from 'react-native-paper';
+import { Surface } from 'react-native-paper'; // Use Surface from react-native-paper
+import { Picker } from '@react-native-picker/picker'; // Install this package separately
 
 const ManageMoney = ({ setHeaderTitle }) => {
   useEffect(() => {
@@ -123,7 +123,7 @@ const ManageMoney = ({ setHeaderTitle }) => {
 
       <View style={styles.expenseListContainer}>
         <Text style={styles.expenseListTitle}>Expense List</Text>
-        <Paper style={styles.paper}>
+        <Surface style={styles.surface}>
           {expenseList.length > 0 ? (
             <FlatList
               data={expenseList}
@@ -140,13 +140,13 @@ const ManageMoney = ({ setHeaderTitle }) => {
           ) : (
             <Text>No expenses added yet.</Text>
           )}
-        </Paper>
+        </Surface>
       </View>
 
       <View style={styles.chartContainer}>
         <Text style={styles.chartTitle}>Savings vs Expenses</Text>
         <Text style={styles.currentBalance}>Current Balance: ₹{savings}</Text>
-        <Paper style={styles.paper}>
+        <Surface style={styles.surface}>
           <PieChart
             data={pieData.map((entry, index) => ({
               name: entry.name,
@@ -166,7 +166,7 @@ const ManageMoney = ({ setHeaderTitle }) => {
             paddingLeft="15"
             absolute
           />
-        </Paper>
+        </Surface>
       </View>
     </ScrollView>
   );
@@ -223,9 +223,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 10,
   },
-  paper: {
+  surface: {
     padding: 20,
     marginTop: 20,
+    elevation: 4, // Adds shadow for Android
+    borderRadius: 10, // Adds rounded corners
   },
   expenseItem: {
     flexDirection: 'row',

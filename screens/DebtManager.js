@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -6,18 +6,31 @@ import {
   Button,
   StyleSheet,
   ScrollView,
-  Picker,
+  Dimensions,
 } from 'react-native';
-import { PieChartComponent } from '../components/PieChartComponent'; // Make sure to import your PieChartComponent
-import { VictoryPie } from 'victory-native';
+import { Picker } from '@react-native-picker/picker';
+import { PieChart } from 'react-native-chart-kit'; // Import PieChart from react-native-chart-kit
+
+const screenWidth = Dimensions.get('window').width;
+
+const chartConfig = {
+  backgroundGradientFrom: '#1E2923',
+  backgroundGradientFromOpacity: 0,
+  backgroundGradientTo: '#08130D',
+  backgroundGradientToOpacity: 0.5,
+  color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+  strokeWidth: 2,
+  barPercentage: 0.5,
+  useShadowColorFromDataset: false,
+};
 
 const DebtManager = ({ setHeaderTitle }) => {
-  const [loanAmount, setLoanAmount] = React.useState('');
-  const [remainingLoanAmount, setRemainingLoanAmount] = React.useState('');
-  const [interestRate, setInterestRate] = React.useState('');
-  const [emiDate, setEmiDate] = React.useState('');
-  const [loanType, setLoanType] = React.useState('');
-  const [loans, setLoans] = React.useState([]);
+  const [loanAmount, setLoanAmount] = useState('');
+  const [remainingLoanAmount, setRemainingLoanAmount] = useState('');
+  const [interestRate, setInterestRate] = useState('');
+  const [emiDate, setEmiDate] = useState('');
+  const [loanType, setLoanType] = useState('');
+  const [loans, setLoans] = useState([]);
 
   const loanTypes = [
     'Personal Loan',
@@ -62,7 +75,15 @@ const DebtManager = ({ setHeaderTitle }) => {
       }
       return acc;
     }, []);
-    return data;
+
+    // Format data for PieChart
+    return data.map((item) => ({
+      name: item.name,
+      population: item.value,
+      color: item.name === 'Personal Loan' ? '#FF9800' : '#4CAF50',
+      legendFontColor: '#7F8C8D',
+      legendFontSize: 15,
+    }));
   };
 
   return (
@@ -116,7 +137,16 @@ const DebtManager = ({ setHeaderTitle }) => {
 
       <View style={styles.chartContainer}>
         <Text style={styles.chartTitle}>Loan Distribution</Text>
-        <PieChartComponent invested={getPieData()} />
+        <PieChart
+          data={getPieData()}
+          width={screenWidth}
+          height={220}
+          chartConfig={chartConfig}
+          accessor="population"
+          backgroundColor="transparent"
+          paddingLeft="15"
+          absolute
+        />
       </View>
     </ScrollView>
   );

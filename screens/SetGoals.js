@@ -5,9 +5,9 @@ import {
   Button,
   StyleSheet,
   ScrollView,
-  Slider,
   FlatList,
 } from 'react-native';
+import Slider from '@react-native-community/slider';
 
 const SetGoals = ({ setHeaderTitle }) => {
   useEffect(() => {

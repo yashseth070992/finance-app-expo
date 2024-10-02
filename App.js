@@ -8,6 +8,8 @@ import Dashboard from './screens/dashboard/Dashboard';
 import FinancialJourney from './screens/journey/FinancialJourney';
 import AssetExplore from './screens/AssetExplore';
 import ManageMoney from './screens/ManageMoney';
+import DebtManager from './screens/DebtManager';
+import SetGoals from './screens/SetGoals';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,6 +38,21 @@ export default function App() {
         <Stack.Screen name="AssetExplore">
           {() => <AssetExplore setHeaderTitle={setHeaderTitle} />}
         </Stack.Screen>
+        <Stack.Screen name="DebtManager">
+          {() => <DebtManager setHeaderTitle={setHeaderTitle} />}
+        </Stack.Screen>
+        <Stack.Screen name="SetGoals">
+          {() => <SetGoals setHeaderTitle={setHeaderTitle} />}
+        </Stack.Screen>
+        {/* <Stack.Screen name="SetGoals">
+          {() => <SetGoals setHeaderTitle={setHeaderTitle} />}
+        </Stack.Screen>
+        <Stack.Screen name="SetGoals">
+          {() => <SetGoals setHeaderTitle={setHeaderTitle} />}
+        </Stack.Screen>
+        <Stack.Screen name="SetGoals">
+          {() => <SetGoals setHeaderTitle={setHeaderTitle} />}
+        </Stack.Screen> */}
       </Stack.Navigator>
 
       <StatusBar style="auto" />

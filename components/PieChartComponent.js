@@ -1,13 +1,36 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { VictoryPie } from 'victory-native';
+import { View, Text, StyleSheet, Dimensions } from 'react-native';
+import { PieChart } from 'react-native-chart-kit'; // Import PieChart from react-native-chart-kit
 
+const screenWidth = Dimensions.get('window').width;
+const chartConfig = {
+  backgroundGradientFrom: '#1E2923',
+  backgroundGradientFromOpacity: 0,
+  backgroundGradientTo: '#08130D',
+  backgroundGradientToOpacity: 0.5,
+  color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
+  strokeWidth: 2, // optional, default 3
+  barPercentage: 0.5,
+  useShadowColorFromDataset: false, // optional
+};
 const COLORS = ['#4CAF50', '#FF9800'];
 
 function PieChartComponent({ invested, returns }) {
   const data = [
-    { name: 'Invested Amount', value: invested },
-    { name: 'Estimated Returns', value: returns },
+    {
+      name: 'Invested Amount',
+      value: invested,
+      color: COLORS[0],
+      legendFontColor: '#7F8C8D',
+      legendFontSize: 15,
+    },
+    {
+      name: 'Estimated Returns',
+      value: returns,
+      color: COLORS[1],
+      legendFontColor: '#7F8C8D',
+      legendFontSize: 15,
+    },
   ];
 
   const filteredData = data.filter((item) => item.value > 0);
@@ -22,15 +45,15 @@ function PieChartComponent({ invested, returns }) {
 
   return (
     <View style={styles.container}>
-      <VictoryPie
+      <PieChart
         data={filteredData}
-        x="name"
-        y="value"
-        colorScale={COLORS}
-        labelRadius={({ innerRadius }) => innerRadius + 20} // Adjust label radius
-        style={{
-          labels: { fill: 'white' },
-        }}
+        width={screenWidth}
+        height={220}
+        chartConfig={chartConfig}
+        accessor="value"
+        backgroundColor="transparent"
+        paddingLeft="15"
+        absolute
       />
     </View>
   );
