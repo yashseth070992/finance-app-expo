@@ -11,6 +11,7 @@ import {
   ScrollView,
 } from 'react-native';
 import { useNavigation, useTheme } from '@react-navigation/native'; // Import useTheme to get the theme
+import axios from 'axios'; // Import axios for making API calls
 
 const Login = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
@@ -25,16 +26,28 @@ const Login = ({ setIsLoggedIn }) => {
     'https://qki8l27mxb.execute-api.ap-south-1.amazonaws.com/login';
 
   const handleLogin = async () => {
-    setIsLoggedIn(true);
-    navigation.navigate('Dashboard');
+    try {
+      const response = await axios.post(API_URL, {
+        email,
+        password,
+      });
+
+      // Check the response to determine if the login was successful
+      if (response.data.success) {
+        setIsLoggedIn(true); // Set logged in state
+        navigation.navigate('Dashboard'); // Navigate to the Dashboard
+      } else {
+        setError(response.data.message); // Set error message
+      }
+    } catch (error) {
+      console.error(error);
+      setError('Login failed. Please try again.'); // Handle error
+    }
   };
 
   return (
     <ScrollView
-      contentContainerStyle={[
-        styles.container,
-        { backgroundColor: colors.background },
-      ]}
+      contentContainerStyle={[styles.container, { backgroundColor: colors.background }]}
     >
       <View style={styles.loginSection}>
         <Text style={[styles.title, { color: colors.text }]}>Sign in</Text>
