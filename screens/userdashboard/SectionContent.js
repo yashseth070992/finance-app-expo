@@ -1,10 +1,9 @@
-// SectionContent.js
 import React from 'react';
 import { View, Text, FlatList, StyleSheet, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
-const CARD_WIDTH = width / 3 - 20;
+const CARD_WIDTH = width / 3 - 30; // Adjusted for better spacing
 
 const SectionContent = ({ data }) => {
   return (
@@ -28,16 +27,18 @@ const SectionContent = ({ data }) => {
 
 const styles = StyleSheet.create({
   optionContainer: {
-    paddingVertical: 10,
+    paddingVertical: 20,
+    paddingHorizontal: 10,
     justifyContent: 'space-between',
   },
   option: {
     width: CARD_WIDTH,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20,
+    marginHorizontal: 10,  // Horizontal margin for spacing between items
+    marginBottom: 20,      // Vertical margin for spacing between rows
     backgroundColor: '#fff',
-    padding: 10,
+    padding: 15,
     borderRadius: 10,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
