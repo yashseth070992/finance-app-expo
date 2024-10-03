@@ -6,8 +6,8 @@ import {
   StyleSheet,
   ImageBackground,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; 
-import { useTheme } from '@react-navigation/native'; 
+import { useNavigation } from '@react-navigation/native';
+import { useTheme } from '@react-navigation/native';
 
 const HeroSection = () => {
   const navigation = useNavigation();
@@ -40,7 +40,10 @@ const HeroSection = () => {
           <Text style={styles.buttonText}>Get Started</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.secondaryButton, { borderColor: colors.buttonBackground }]}
+          style={[
+            styles.secondaryButton,
+            { borderColor: colors.buttonBackground },
+          ]}
           onPress={() => navigation.navigate('LearnMore')}
         >
           <Text style={[styles.buttonText, { color: colors.buttonBackground }]}>

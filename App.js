@@ -50,53 +50,33 @@ export default function App() {
             <Stack.Screen name="Dashboard" options={menuBarOptions}>
               {() => <Dashboard setHeaderTitle={memoizedSetHeaderTitle} />}
             </Stack.Screen>
-            <Stack.Screen
-              name="FinancialJourney"
-              options={menuBarOptions}
-            >
-              {() => <FinancialJourney setHeaderTitle={memoizedSetHeaderTitle} />}
+            <Stack.Screen name="FinancialJourney" options={menuBarOptions}>
+              {() => (
+                <FinancialJourney setHeaderTitle={memoizedSetHeaderTitle} />
+              )}
             </Stack.Screen>
-            <Stack.Screen
-              name="ManageMoney"
-              options={menuBarOptions}
-            >
+            <Stack.Screen name="ManageMoney" options={menuBarOptions}>
               {() => <ManageMoney setHeaderTitle={memoizedSetHeaderTitle} />}
             </Stack.Screen>
-            <Stack.Screen
-              name="AssetExplore"
-              options={menuBarOptions}
-            >
+            <Stack.Screen name="AssetExplore" options={menuBarOptions}>
               {() => <AssetExplore setHeaderTitle={memoizedSetHeaderTitle} />}
             </Stack.Screen>
-            <Stack.Screen
-              name="DebtManager"
-              options={menuBarOptions}
-            >
+            <Stack.Screen name="DebtManager" options={menuBarOptions}>
               {() => <DebtManager setHeaderTitle={memoizedSetHeaderTitle} />}
             </Stack.Screen>
-            <Stack.Screen
-              name="SetGoals"
-              options={menuBarOptions}
-            >
+            <Stack.Screen name="SetGoals" options={menuBarOptions}>
               {() => <SetGoals setHeaderTitle={memoizedSetHeaderTitle} />}
             </Stack.Screen>
-            <Stack.Screen
-              name="SIPCalculator"
-              options={menuBarOptions}
-            >
+            <Stack.Screen name="SIPCalculator" options={menuBarOptions}>
               {() => <SIPCalculator setHeaderTitle={memoizedSetHeaderTitle} />}
             </Stack.Screen>
-            <Stack.Screen
-              name="SWPCalculator"
-              options={menuBarOptions}
-            >
+            <Stack.Screen name="SWPCalculator" options={menuBarOptions}>
               {() => <SWPCalculator setHeaderTitle={memoizedSetHeaderTitle} />}
             </Stack.Screen>
-            <Stack.Screen
-              name="LumpsumCalculator"
-              options={menuBarOptions}
-            >
-              {() => <LumpsumCalculator setHeaderTitle={memoizedSetHeaderTitle} />}
+            <Stack.Screen name="LumpsumCalculator" options={menuBarOptions}>
+              {() => (
+                <LumpsumCalculator setHeaderTitle={memoizedSetHeaderTitle} />
+              )}
             </Stack.Screen>
           </Stack.Navigator>
         ) : (

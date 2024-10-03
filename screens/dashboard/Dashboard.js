@@ -9,6 +9,7 @@ import FinancialOverview from './FinancialOverview';
 import FinanceRulesSection from './FinanceRulesSection';
 import ManageExploreSection from './ManageExploreSection';
 import FooterSection from '../../components/FooterSection';
+import ToggleSection from '../userdashboard/ToggleSection';
 
 const Dashboard = ({ setHeaderTitle }) => {
   const navigation = useNavigation();
@@ -21,7 +22,8 @@ const Dashboard = ({ setHeaderTitle }) => {
 
   // Create a list of components to render in the FlatList
   const sections = [
-    { id: 'hero', component: <HeroSection /> },
+    // { id: 'hero', component: <HeroSection /> },
+    { id: 'toglesection', component: <ToggleSection /> },
     { id: 'tools', component: <FinancialToolsSection /> },
     { id: 'quotes', component: <QuotesCarousel /> },
     { id: 'manage', component: <ManageExploreSection /> },
@@ -35,7 +37,9 @@ const Dashboard = ({ setHeaderTitle }) => {
     <FlatList
       data={sections}
       keyExtractor={(item) => item.id}
-      renderItem={({ item }) => <View style={styles.section}>{item.component}</View>}
+      renderItem={({ item }) => (
+        <View style={styles.section}>{item.component}</View>
+      )}
       contentContainerStyle={styles.container(colors)}
     />
   );

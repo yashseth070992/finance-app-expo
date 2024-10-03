@@ -30,7 +30,9 @@ const CustomCard = ({
         />
       </View>
 
-      <Text style={[styles.titleText, { color: titleTextColor || colors.text }]}>
+      <Text
+        style={[styles.titleText, { color: titleTextColor || colors.text }]}
+      >
         {title}
       </Text>
 

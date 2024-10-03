@@ -17,14 +17,14 @@ const StaticContentSection = () => {
       title: 'Market Trends',
       description:
         'Stay updated on the latest market trends and make data-driven financial decisions.',
-        iconName: 'trending-up',
+      iconName: 'trending-up',
       backgroundColor: '#EAF2F8',
     },
     {
       title: 'Financial Health',
       description:
         'Track your financial health and get personalized tips to improve your financial well-being.',
-        iconName: 'cash',
+      iconName: 'cash',
       backgroundColor: '#F5EEF8',
     },
   ].map((item) => ({

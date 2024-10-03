@@ -20,9 +20,7 @@ const SignUp = () => {
   const navigation = useNavigation();
   const { colors } = useTheme(); // Get the theme colors
 
-
   const handleSignUp = async () => {
-
     try {
       const response = await fetch(signupUrl, {
         method: 'POST',

@@ -42,7 +42,6 @@ const ManageExploreSection = () => {
   const navigation = useNavigation(); // Navigation hook
   const { colors } = useTheme(); // Get colors from the current theme
 
-
   return (
     <View style={styles.container}>
       <Text style={[styles.heading, { color: colors.text }]}>

@@ -35,9 +35,7 @@ const FinanceRulesSection = () => {
     ...item,
     titleTextColor: colors.text,
     descriptionTextColor: colors.secondaryText,
-    icon: (
-      <Ionicons name={item.iconName} size={50} color={colors.text} />
-    ), // Use Ionicons and theme color
+    icon: <Ionicons name={item.iconName} size={50} color={colors.text} />, // Use Ionicons and theme color
   }));
 
   return (
