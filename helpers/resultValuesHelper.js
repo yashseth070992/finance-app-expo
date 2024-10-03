@@ -8,9 +8,6 @@ export const getResultValues = (calculatorType, results) => {
   switch (calculatorType) {
     case 'sip': {
       const { invested, rate, time } = results;
-
-      console.log('SIP Calculation Results:', { invested, rate, time });
-
       const chartData = generateSIPChartData(invested / time / 12, rate, time); // Correctly pass monthly investment
       return {
         invested, // Total invested

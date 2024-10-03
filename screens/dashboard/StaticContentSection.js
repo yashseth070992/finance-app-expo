@@ -10,21 +10,21 @@ const StaticContentSection = () => {
       title: 'Investment Strategies',
       description:
         'Explore various investment strategies to diversify your portfolio and maximize returns.',
-      icon: 'bar-chart',
+      iconName: 'bar-chart',
       backgroundColor: '#E8F6F3',
     },
     {
       title: 'Market Trends',
       description:
         'Stay updated on the latest market trends and make data-driven financial decisions.',
-      icon: 'trending-up',
+        iconName: 'trending-up',
       backgroundColor: '#EAF2F8',
     },
     {
       title: 'Financial Health',
       description:
         'Track your financial health and get personalized tips to improve your financial well-being.',
-      icon: 'cash',
+        iconName: 'cash',
       backgroundColor: '#F5EEF8',
     },
   ].map((item) => ({
@@ -38,8 +38,7 @@ const StaticContentSection = () => {
       <Text style={[styles.heading, { color: colors.text }]}>
         Explore Financial Insights
       </Text>
-      <CustomCardsContainer data={contentData} />{' '}
-      {/* Use CustomCardsContainer */}
+      <CustomCardsContainer data={contentData} />
     </View>
   );
 };

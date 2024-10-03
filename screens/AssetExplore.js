@@ -87,13 +87,11 @@ const AssetExplore = ({ setHeaderTitle }) => {
   }, [setHeaderTitle]);
 
   const handleAssetClick = (asset) => {
-    console.log('Selected Asset:', asset); // Log to verify asset selection
     setSelectedAsset(asset);
     const data = Array.from({ length: 11 }, (_, year) => ({
       name: `${year} Year${year === 1 ? '' : 's'}`,
       value: calculateFutureValue(10000, asset.avgROI, year),
     }));
-    console.log('Chart Data:', data); // Log chart data to verify
     setChartData(data);
   };
 
@@ -131,7 +129,6 @@ const AssetExplore = ({ setHeaderTitle }) => {
       </Text>
 
       <View style={styles.content}>
-        {/* Asset List */}
         <View style={styles.assetContainer}>
           <FlatList
             data={assetClasses}
@@ -148,7 +145,6 @@ const AssetExplore = ({ setHeaderTitle }) => {
           />
         </View>
 
-        {/* Asset Details & Chart */}
         {selectedAsset && chartData.length > 0 && (
           <View style={styles.chartContainer}>
             <Text style={styles.detailsTitle}>

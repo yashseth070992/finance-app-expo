@@ -75,8 +75,6 @@ const CalculatorResult = ({
       {viewMode === 'chart' ? (
         <View style={styles.chartContainer}>
           <PieChartComponent invested={invested} returns={returns} />
-          {/* Uncomment the LineChartComponent as needed */}
-          {/* <LineChartComponent data={chartData} /> */}
         </View>
       ) : (
         <FlatList

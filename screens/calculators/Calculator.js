@@ -28,7 +28,6 @@ const Calculator = ({
 
   const calculate = useCallback(() => {
     const calcResults = calculateResults(calculatorType, values);
-    console.log('Calculated Results:', calcResults);
     return calcResults;
   }, [calculatorType, values]);
 

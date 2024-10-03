@@ -6,35 +6,32 @@ import {
   StyleSheet,
   ImageBackground,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // Import useNavigation
-import { useTheme } from '@react-navigation/native'; // Import useTheme
+import { useNavigation } from '@react-navigation/native'; 
+import { useTheme } from '@react-navigation/native'; 
 
 const HeroSection = () => {
-  const navigation = useNavigation(); // Use the useNavigation hook
-  const { colors } = useTheme(); // Get colors from the current theme
+  const navigation = useNavigation();
+  const { colors } = useTheme();
 
   return (
     <ImageBackground
-      source={{ uri: 'your-gradient-background-url' }} // You can also create a gradient background with a library
+      source={require('../../assets/gradient_background.png')} // Ensure the path is correct
       style={styles.container}
+      resizeMode="cover"
     >
-      {/* Decorative Background Circles */}
       <View style={[styles.circle, styles.circle1]} />
       <View style={[styles.circle, styles.circle2]} />
 
-      {/* Main Heading */}
       <Text style={[styles.heading, { color: colors.text }]}>
         Empower Your Financial Future
       </Text>
 
-      {/* Supporting Text */}
       <Text style={[styles.supportingText, { color: colors.secondaryText }]}>
         Take control of your finances with personalized investment tools and
         insights. Learn the art of compounding and long-term growth to achieve
         your financial goals.
       </Text>
 
-      {/* Call to Action Buttons */}
       <View style={styles.buttonContainer}>
         <TouchableOpacity
           style={[styles.primaryButton, { backgroundColor: colors.primary }]}
@@ -43,14 +40,15 @@ const HeroSection = () => {
           <Text style={styles.buttonText}>Get Started</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.secondaryButton, { borderColor: colors.accent }]}
+          style={[styles.secondaryButton, { borderColor: colors.buttonBackground }]}
           onPress={() => navigation.navigate('LearnMore')}
         >
-          <Text style={styles.buttonText}>Learn More</Text>
+          <Text style={[styles.buttonText, { color: colors.buttonBackground }]}>
+            Learn More
+          </Text>
         </TouchableOpacity>
       </View>
 
-      {/* Additional Info or Key Points */}
       <Text style={[styles.additionalInfo, { color: colors.secondaryText }]}>
         Whether you're planning for retirement, saving for a big purchase, or
         just looking to grow your wealth, our suite of financial tools will help
@@ -63,14 +61,16 @@ const HeroSection = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1, // Ensures it takes full height
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 50,
-    paddingHorizontal: 30,
-    borderRadius: 20,
+    paddingVertical: 60,
+    paddingHorizontal: 40,
+    width: '100%', // Full width
+    height: '100%', // Full height
     position: 'relative',
     overflow: 'hidden',
+    minHeight: 400,
   },
   circle: {
     position: 'absolute',
@@ -78,56 +78,58 @@ const styles = StyleSheet.create({
     opacity: 0.4,
   },
   circle1: {
-    top: -40,
-    left: -40,
-    height: 120,
-    width: 120,
+    top: -50,
+    left: -50,
+    height: 150,
+    width: 150,
     backgroundColor: '#ff6b6b',
   },
   circle2: {
-    bottom: -40,
-    right: -40,
-    height: 120,
-    width: 120,
+    bottom: -50,
+    right: -50,
+    height: 150,
+    width: 150,
     backgroundColor: '#feca57',
   },
   heading: {
-    fontWeight: '800',
+    fontWeight: 'bold',
     textTransform: 'uppercase',
-    letterSpacing: 4,
-    marginBottom: 10,
-    fontSize: 24,
+    letterSpacing: 3,
+    marginBottom: 20,
+    fontSize: 28,
+    textAlign: 'center',
   },
   supportingText: {
-    fontSize: 16,
+    fontSize: 18,
     textAlign: 'center',
-    marginVertical: 10,
-    lineHeight: 24,
+    marginVertical: 20,
+    lineHeight: 26,
   },
   buttonContainer: {
     flexDirection: 'row',
-    marginTop: 20,
+    marginTop: 30,
   },
   primaryButton: {
-    paddingVertical: 10,
-    paddingHorizontal: 30,
+    paddingVertical: 12,
+    paddingHorizontal: 35,
     borderRadius: 25,
-    marginRight: 10,
+    marginRight: 15,
   },
   secondaryButton: {
     borderWidth: 1,
-    paddingVertical: 10,
-    paddingHorizontal: 30,
+    paddingVertical: 12,
+    paddingHorizontal: 35,
     borderRadius: 25,
   },
   buttonText: {
     color: '#ffffff',
     fontSize: 16,
+    fontWeight: '600',
   },
   additionalInfo: {
-    fontSize: 14,
+    fontSize: 16,
     textAlign: 'center',
-    marginTop: 20,
+    marginTop: 30,
     lineHeight: 24,
   },
 });

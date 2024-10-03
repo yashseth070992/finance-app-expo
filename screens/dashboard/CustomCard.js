@@ -1,74 +1,56 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons'; // Correct
-import { useNavigation, useTheme } from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useTheme } from '@react-navigation/native';
 
 const CustomCard = ({
   title,
   description,
   buttonAction,
-  buttonIcon,
+  iconName, // New prop to accept the icon name
   backgroundColor,
   titleTextColor,
   descriptionTextColor,
-  iconSize = 50, // Default icon size
+  iconSize = 50,
 }) => {
-  const navigation = useNavigation();
-  const { colors } = useTheme(); // Get colors from the current theme
-
-  // Clone the passed icon and apply the same styles
-  const iconElement = buttonIcon ? (
-    React.cloneElement(buttonIcon, {
-      size: iconSize,
-      color: titleTextColor || colors.text, // Use theme text color
-    })
-  ) : (
-    <Ionicons
-      name="arrow-forward"
-      size={iconSize}
-      color={titleTextColor || colors.text} // Use theme text color
-    />
-  );
+  const { colors } = useTheme();
 
   return (
     <View
       style={[
         styles.cardContainer,
-        {
-          backgroundColor: backgroundColor || colors.card, // Use theme card color
-        },
+        { backgroundColor: backgroundColor || colors.card },
       ]}
     >
-      {/* Icon Section */}
-      <TouchableOpacity style={styles.iconButton} disabled>
-        {iconElement} {/* Render the cloned or default icon */}
-      </TouchableOpacity>
+      <View style={styles.iconButton}>
+        <Ionicons
+          name={iconName} // Dynamically use the icon name passed
+          size={iconSize}
+          color={titleTextColor || colors.text}
+        />
+      </View>
 
-      {/* Title */}
-      <Text
-        style={[styles.titleText, { color: titleTextColor || colors.text }]}
-      >
+      <Text style={[styles.titleText, { color: titleTextColor || colors.text }]}>
         {title}
       </Text>
 
-      {/* Description */}
       <Text
         style={[
           styles.descriptionText,
-          { color: descriptionTextColor || colors.secondaryText }, // Use theme secondary text color
+          { color: descriptionTextColor || colors.secondaryText },
         ]}
       >
         {description}
       </Text>
 
-      {/* Arrow Button Section */}
       <TouchableOpacity
-        onPress={buttonAction || (() => alert('No action assigned'))} // Fallback to an alert
+        style={styles.arrowButton}
+        onPress={buttonAction || (() => alert('No action assigned'))}
       >
         <Ionicons
           name="arrow-forward"
           size={iconSize}
-          color={titleTextColor || colors.text} // Use theme text color
+          color={titleTextColor || colors.text}
         />
       </TouchableOpacity>
     </View>
@@ -77,32 +59,33 @@ const CustomCard = ({
 
 const styles = StyleSheet.create({
   cardContainer: {
-    textAlign: 'center',
-    padding: 16,
     borderRadius: 16,
     minHeight: 250,
-    display: 'flex',
-    justifyContent: 'center',
+    padding: 20,
     alignItems: 'center',
-    elevation: 4, // Shadow for Android
-    shadowColor: '#000', // Shadow for iOS
+    justifyContent: 'space-between',
+    shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 3,
+    elevation: 5,
   },
   iconButton: {
     marginBottom: 10,
-    pointerEvents: 'none', // Disable hover and click
   },
   titleText: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
+    textAlign: 'center',
     marginTop: 10,
   },
   descriptionText: {
-    fontSize: 16,
-    marginTop: 5,
+    fontSize: 14,
     textAlign: 'center',
+    marginTop: 5,
+  },
+  arrowButton: {
+    marginTop: 10,
   },
 });
 

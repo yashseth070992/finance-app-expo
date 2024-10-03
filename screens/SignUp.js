@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  CheckBox,
   Button,
   TouchableOpacity,
   StyleSheet,
@@ -21,12 +20,11 @@ const SignUp = () => {
   const navigation = useNavigation();
   const { colors } = useTheme(); // Get the theme colors
 
-  const API_URL =
-    'https://qki8l27mxb.execute-api.ap-south-1.amazonaws.com/signup';
 
   const handleSignUp = async () => {
+
     try {
-      const response = await fetch(API_URL, {
+      const response = await fetch(signupUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -113,17 +111,6 @@ const SignUp = () => {
         value={password}
         onChangeText={setPassword}
       />
-
-      <View style={styles.checkboxContainer}>
-        <CheckBox
-          value={acceptUpdates}
-          onValueChange={setAcceptUpdates}
-          tintColors={{ true: colors.primary, false: colors.secondaryText }}
-        />
-        <Text style={[styles.checkboxLabel, { color: colors.text }]}>
-          I want to receive updates via email.
-        </Text>
-      </View>
 
       <Button title="Sign up" onPress={handleSignUp} color={colors.primary} />
 

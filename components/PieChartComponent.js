@@ -54,7 +54,6 @@ function PieChartComponent({ invested, returns }) {
 
   return (
     <View style={styles.container}>
-      {/* Render the PieChart */}
       <PieChart
         data={filteredData.map((item) => ({
           name: item.name,

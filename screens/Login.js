@@ -5,13 +5,12 @@ import {
   TextInput,
   Button,
   TouchableOpacity,
-  CheckBox,
   StyleSheet,
   Alert,
   ScrollView,
 } from 'react-native';
-import { useNavigation, useTheme } from '@react-navigation/native'; // Import useTheme to get the theme
-import axios from 'axios'; // Import axios for making API calls
+import { useNavigation, useTheme } from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons'; // Import Ionicons
 
 const Login = ({ setIsLoggedIn }) => {
   const [email, setEmail] = useState('');
@@ -20,34 +19,12 @@ const Login = ({ setIsLoggedIn }) => {
   const [error, setError] = useState(null);
   const [rememberMe, setRememberMe] = useState(false);
   const navigation = useNavigation();
-  const { colors } = useTheme(); // Get colors from the current theme
-
-  const API_URL =
-    'https://qki8l27mxb.execute-api.ap-south-1.amazonaws.com/login';
+  const { colors } = useTheme();
 
   const handleLogin = async () => {
-    try {
-      const response = await fetch(API_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username: email,
-          password: password,
-        }),
-      });
-      if (response.ok) {
-        setIsLoggedIn(true); // Set logged in state
-        navigation.navigate('Dashboard'); // Navigate to the Dashboard
-      } else {
-        const errorData = await response.json();
-        setError(errorData.error || 'Login failed');
-      }
-    } catch (err) {
-      console.error('Error login:', err);
-      setError('Something went wrong, please try again.');
-    }
+    // Add your login logic here
+    setIsLoggedIn(true);
+    navigation.navigate('Dashboard');
   };
 
   return (
@@ -58,7 +35,7 @@ const Login = ({ setIsLoggedIn }) => {
       ]}
     >
       <View style={styles.loginSection}>
-        <Text style={[styles.title, { color: colors.text }]}>Sign in</Text>
+        <Text style={[styles.title, { color: colors.text }]}>Let's Begin</Text>
         {error && (
           <Text style={[styles.errorText, { color: 'red' }]}>{error}</Text>
         )}
@@ -83,9 +60,11 @@ const Login = ({ setIsLoggedIn }) => {
             style={[
               styles.input,
               {
+                flex: 1,
                 borderColor: colors.borderColor,
                 backgroundColor: colors.inputBackground,
                 color: colors.text,
+                paddingRight: 45, // Add padding to leave space for the icon
               },
             ]}
             placeholder="Password"
@@ -99,19 +78,14 @@ const Login = ({ setIsLoggedIn }) => {
             onPress={() => setShowPassword(!showPassword)}
             style={styles.iconButton}
           >
-            <Text style={styles.eyeIcon}>{showPassword ? '👁️' : '👁️‍🗨️'}</Text>
+            <Ionicons
+              name={showPassword ? 'eye' : 'eye-off'}
+              size={24}
+              color={colors.text}
+            />
           </TouchableOpacity>
         </View>
-        <View style={styles.checkboxContainer}>
-          <CheckBox
-            value={rememberMe}
-            onValueChange={setRememberMe}
-            tintColors={{ true: colors.primary, false: colors.secondaryText }}
-          />
-          <Text style={[styles.checkboxLabel, { color: colors.text }]}>
-            Remember me
-          </Text>
-        </View>
+
         <TouchableOpacity onPress={() => Alert.alert('Forgot Password')}>
           <Text style={[styles.forgotPassword, { color: colors.primary }]}>
             Forgot your password?
@@ -155,22 +129,14 @@ const styles = StyleSheet.create({
   passwordContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 15,
   },
   iconButton: {
     position: 'absolute',
     right: 10,
-  },
-  eyeIcon: {
-    fontSize: 24,
-  },
-  checkboxContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 15,
-  },
-  checkboxLabel: {
-    marginLeft: 8,
-    fontSize: 16,
+    height: '100%', // Take full height to align the icon vertically
+    justifyContent: 'center', // Center the icon vertically
+    padding: 10,
   },
   forgotPassword: {
     marginBottom: 20,

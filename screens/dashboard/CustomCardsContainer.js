@@ -1,35 +1,50 @@
-// CustomCardsContainer.js
 import React from 'react';
-import { FlatList, View, StyleSheet } from 'react-native';
-import CustomCard from './CustomCard'; // Import your CustomCard component
+import { FlatList, View, StyleSheet, Dimensions } from 'react-native';
+import CustomCard from './CustomCard';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '@react-navigation/native';
 
+const { width } = Dimensions.get('window');
+const CARD_WIDTH = width / 2 - 30;
+
 const CustomCardsContainer = ({ data }) => {
-  const navigation = useNavigation(); // Get navigation object
-  const { colors } = useTheme(); // Get colors from the current theme
+  const navigation = useNavigation();
+  const { colors } = useTheme();
 
   return (
     <FlatList
       data={data}
       renderItem={({ item }) => (
-        <CustomCard
-          title={item.title}
-          description={item.description}
-          buttonAction={() => navigation.navigate(item.screen)} // Pass navigation to CustomCard
-          backgroundColor={item.backgroundColor}
-        />
+        <View style={styles.cardWrapper}>
+          <CustomCard
+            title={item.title}
+            description={item.description}
+            buttonAction={() => navigation.navigate(item.screen)}
+            backgroundColor={item.backgroundColor}
+            iconName={item.iconName} // Pass the icon name to the card
+          />
+        </View>
       )}
       keyExtractor={(item) => item.title}
-      numColumns={2} // Adjust number of columns
+      numColumns={2}
+      columnWrapperStyle={styles.columnWrapper}
+      contentContainerStyle={styles.contentContainer}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 20,
-    padding: 10,
+  contentContainer: {
+    paddingHorizontal: 10,
+    paddingVertical: 20,
+  },
+  columnWrapper: {
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  cardWrapper: {
+    width: CARD_WIDTH,
+    marginHorizontal: 10,
   },
 });
 

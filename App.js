@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import '@babel/polyfill'; // Add this line at the top
+import React, { useState, useCallback } from 'react';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
@@ -24,69 +25,78 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [headerTitle, setHeaderTitle] = useState('');
 
+  // Memoized function to update the header title, avoids unnecessary re-renders
+  const memoizedSetHeaderTitle = useCallback((title) => {
+    setHeaderTitle(title);
+  }, []);
+
   // Function to handle logout
   const handleLogout = () => {
     setIsLoggedIn(false);
   };
 
-  // Function to render MenuBar in stack screen options
-  const renderMenuBar = (title) => ({
-    header: () => <MenuBar title={title} onLogout={handleLogout} />,
-  });
+  const menuBarOptions = React.useMemo(
+    () => ({
+      header: () => <MenuBar title={headerTitle} onLogout={handleLogout} />,
+    }),
+    [headerTitle, handleLogout]
+  );
 
   return (
     <SafeAreaProvider>
-      {/* Set theme to DarkThemeConfig explicitly */}
       <NavigationContainer theme={LightTheme}>
         {isLoggedIn ? (
           <Stack.Navigator initialRouteName="Dashboard">
-            <Stack.Screen name="Dashboard" options={renderMenuBar(headerTitle)}>
-              {() => <Dashboard setHeaderTitle={setHeaderTitle} />}
+            <Stack.Screen name="Dashboard" options={menuBarOptions}>
+              {() => <Dashboard setHeaderTitle={memoizedSetHeaderTitle} />}
             </Stack.Screen>
             <Stack.Screen
               name="FinancialJourney"
-              options={renderMenuBar(headerTitle)}
+              options={menuBarOptions}
             >
-              {() => <FinancialJourney setHeaderTitle={setHeaderTitle} />}
+              {() => <FinancialJourney setHeaderTitle={memoizedSetHeaderTitle} />}
             </Stack.Screen>
             <Stack.Screen
               name="ManageMoney"
-              options={renderMenuBar(headerTitle)}
+              options={menuBarOptions}
             >
-              {() => <ManageMoney setHeaderTitle={setHeaderTitle} />}
+              {() => <ManageMoney setHeaderTitle={memoizedSetHeaderTitle} />}
             </Stack.Screen>
             <Stack.Screen
               name="AssetExplore"
-              options={renderMenuBar(headerTitle)}
+              options={menuBarOptions}
             >
-              {() => <AssetExplore setHeaderTitle={setHeaderTitle} />}
+              {() => <AssetExplore setHeaderTitle={memoizedSetHeaderTitle} />}
             </Stack.Screen>
             <Stack.Screen
               name="DebtManager"
-              options={renderMenuBar(headerTitle)}
+              options={menuBarOptions}
             >
-              {() => <DebtManager setHeaderTitle={setHeaderTitle} />}
+              {() => <DebtManager setHeaderTitle={memoizedSetHeaderTitle} />}
             </Stack.Screen>
-            <Stack.Screen name="SetGoals" options={renderMenuBar(headerTitle)}>
-              {() => <SetGoals setHeaderTitle={setHeaderTitle} />}
+            <Stack.Screen
+              name="SetGoals"
+              options={menuBarOptions}
+            >
+              {() => <SetGoals setHeaderTitle={memoizedSetHeaderTitle} />}
             </Stack.Screen>
             <Stack.Screen
               name="SIPCalculator"
-              options={renderMenuBar(headerTitle)}
+              options={menuBarOptions}
             >
-              {() => <SIPCalculator setHeaderTitle={setHeaderTitle} />}
+              {() => <SIPCalculator setHeaderTitle={memoizedSetHeaderTitle} />}
             </Stack.Screen>
             <Stack.Screen
               name="SWPCalculator"
-              options={renderMenuBar(headerTitle)}
+              options={menuBarOptions}
             >
-              {() => <SWPCalculator setHeaderTitle={setHeaderTitle} />}
+              {() => <SWPCalculator setHeaderTitle={memoizedSetHeaderTitle} />}
             </Stack.Screen>
             <Stack.Screen
               name="LumpsumCalculator"
-              options={renderMenuBar(headerTitle)}
+              options={menuBarOptions}
             >
-              {() => <LumpsumCalculator setHeaderTitle={setHeaderTitle} />}
+              {() => <LumpsumCalculator setHeaderTitle={memoizedSetHeaderTitle} />}
             </Stack.Screen>
           </Stack.Navigator>
         ) : (
@@ -99,8 +109,6 @@ export default function App() {
             </Stack.Screen>
           </Stack.Navigator>
         )}
-
-        {/* Set the status bar style to match the dark theme */}
         <StatusBar style="light" />
       </NavigationContainer>
     </SafeAreaProvider>

@@ -7,21 +7,24 @@ const dashboardCardData = [
   {
     title: 'Sip Calculator',
     screen: 'SIPCalculator',
-    backgroundColor: '#3498db',
+    backgroundColor: '#D6EAF8', // Light Blue tone to match the soft palette
     description: 'Calculate the returns of your Systematic Investment Plan.',
+    iconName: 'calculator-outline', // Ionicons icon name
   },
   {
     title: 'Lumpsum Calculator',
     screen: 'LumpsumCalculator',
-    backgroundColor: '#2ecc71',
+    backgroundColor: '#D4EFDF', // Light Green to complement the existing green
     description: 'Compute the growth of a one-time lumpsum investment.',
+    iconName: 'cash-outline', // Ionicons icon name
   },
   {
     title: 'SWP Calculator',
     screen: 'SWPCalculator',
-    backgroundColor: '#8e44ad',
+    backgroundColor: '#EBDEF0', // Light Purple tone to complement the darker purple
     description:
       'Find out how much you can withdraw periodically from your investments.',
+    iconName: 'trending-up-outline', // Ionicons icon name
   },
 ];
 
@@ -33,7 +36,6 @@ const FinancialToolsSection = () => {
       <Text style={[styles.heading, { color: colors.text }]}>
         Explore Our Financial Calculators
       </Text>
-      {/* Use CustomCardsContainer to render the cards */}
       <CustomCardsContainer data={dashboardCardData} />
     </View>
   );
